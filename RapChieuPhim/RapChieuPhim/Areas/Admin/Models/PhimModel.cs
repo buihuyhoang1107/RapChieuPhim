@@ -11,15 +11,12 @@ namespace RapChieuPhim.Areas.Admin.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int idPhim { get; set; }
-        public string tenPhim { get; set; }
-        public string ngayDang { get; set; }
-        public int binhluanPhim { get; set; }
-        public string motaPhim { get; set; }
-        public string anhPhim { get; set; }
-        public int trangThaiPhim { get; set; }
-        public int idP_ChuDe { get; set; }
-        [ForeignKey("idP_ChuDe")]
-        public virtual ChuDePhimModel idChuDe { get; set; }
+        public int ID { get; set; }
+        public string Ten_phim { get; set; }
+        public string Hinh_anh { get; set; }
+        public int Thoi_luong { get; set; }
+        public string Luot_xem { get; set; }
+        public string Gia_ve { get; set; }
+        public int Da_xoa { get; set; }
     }
 }

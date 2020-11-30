@@ -13,7 +13,7 @@ namespace RapChieuPhim.Areas.Admin.Data
         {
 
         }
-        public DbSet<ChuDePhimModel> LoaiChuDePhim { get; set; }
+        public DbSet<BinhLuanModel> LoaiChuDePhim { get; set; }
         public DbSet<PhimModel> Phim { get; set; }
     }
 }

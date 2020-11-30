@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace RapChieuPhim.Areas.Admin.Models
 {
-    public class ChuDePhimModel
+    public class BinhLuanModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int idChuDe { get; set; }
-        public string tenChuDe { get; set; }
-        public int trangThaiChuDe { get; set; }
-        public ICollection<PhimModel> lstPost { get; set; }
+        public int ID { get; set; }
+        public int Thanh_vien_ID { get; set; }
+        public int Phim_ID { get; set; }
+        public string Noi_dung { get; set; }
     }
 }
