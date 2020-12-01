@@ -226,11 +226,6 @@ D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Details.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Index.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVienModels\Create.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVienModels\Delete.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVienModels\Details.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVienModels\Edit.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVienModels\Index.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\VeXemPhim\Create.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\VeXemPhim\Delete.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\VeXemPhim\Details.cshtml.g.cs
@@ -241,3 +236,8 @@ D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\XuatChieu\Details.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\XuatChieu\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\XuatChieu\Index.cshtml.g.cs
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVien\Create.cshtml.g.cs
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVien\Delete.cshtml.g.cs
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVien\Details.cshtml.g.cs
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVien\Edit.cshtml.g.cs
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ThanhVien\Index.cshtml.g.cs
