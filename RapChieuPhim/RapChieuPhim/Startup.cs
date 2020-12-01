@@ -42,7 +42,7 @@ namespace RapChieuPhim
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles();//chinh css vs js
 
             app.UseRouting();
 

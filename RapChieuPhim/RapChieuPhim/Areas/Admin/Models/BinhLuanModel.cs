@@ -9,11 +9,16 @@ namespace RapChieuPhim.Areas.Admin.Models
 {
     public class BinhLuanModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         [Key]
         public int ID { get; set; }
-        public int Thanh_vien_ID { get; set; }
+        public int ThanhVien_ID { get; set; }
         public int Phim_ID { get; set; }
         public string Noi_dung { get; set; }
+
+        [ForeignKey("ThanhVien_ID")]
+        public virtual ThanhVienModel idThanhVien { get; set; }
+        [ForeignKey("Phim_ID")]
+        public virtual PhimModel idPhim { get; set; }
     }
 }

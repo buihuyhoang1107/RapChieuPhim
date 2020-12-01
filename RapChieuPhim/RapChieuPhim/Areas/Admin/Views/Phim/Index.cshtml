@@ -13,25 +13,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tenPhim)
+                @Html.DisplayNameFor(model => model.Ten_phim)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ngayDang)
+                @Html.DisplayNameFor(model => model.Hinh_anh)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.binhluanPhim)
+                @Html.DisplayNameFor(model => model.Thoi_luong)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.motaPhim)
+                @Html.DisplayNameFor(model => model.Luot_xem)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.anhPhim)
+                @Html.DisplayNameFor(model => model.Gia_ve)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.trangThaiPhim)
+                @Html.DisplayNameFor(model => model.Lich_Chieu)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idChuDe)
+                @Html.DisplayNameFor(model => model.Da_xoa)
             </th>
             <th></th>
         </tr>
@@ -40,30 +40,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.tenPhim)
+                @Html.DisplayFor(modelItem => item.Ten_phim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ngayDang)
+                @Html.DisplayFor(modelItem => item.Hinh_anh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.binhluanPhim)
+                @Html.DisplayFor(modelItem => item.Thoi_luong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.motaPhim)
+                @Html.DisplayFor(modelItem => item.Luot_xem)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.anhPhim)
+                @Html.DisplayFor(modelItem => item.Gia_ve)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.trangThaiPhim)
+                @Html.DisplayFor(modelItem => item.Lich_Chieu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.idChuDe.idChuDe)
+                @Html.DisplayFor(modelItem => item.Da_xoa)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.idPhim">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.idPhim">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.idPhim">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
 }

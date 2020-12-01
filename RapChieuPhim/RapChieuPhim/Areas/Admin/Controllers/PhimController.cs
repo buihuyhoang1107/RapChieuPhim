@@ -23,8 +23,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/Phim
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.Phim.Include(p => p.idChuDe);
-            return View(await dPContext.ToListAsync());
+            return View(await _context.PhimModel.ToListAsync());
         }
 
         // GET: Admin/Phim/Details/5
@@ -35,9 +34,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var phimModel = await _context.Phim
-                .Include(p => p.idChuDe)
-                .FirstOrDefaultAsync(m => m.idPhim == id);
+            var phimModel = await _context.PhimModel
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (phimModel == null)
             {
                 return NotFound();
@@ -49,7 +47,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/Phim/Create
         public IActionResult Create()
         {
-            ViewData["idP_ChuDe"] = new SelectList(_context.LoaiChuDePhim, "idChuDe", "idChuDe");
             return View();
         }
 
@@ -58,7 +55,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPhim,tenPhim,ngayDang,binhluanPhim,motaPhim,anhPhim,trangThaiPhim,idP_ChuDe")] PhimModel phimModel)
+        public async Task<IActionResult> Create([Bind("ID,Ten_phim,Hinh_anh,Thoi_luong,Luot_xem,Gia_ve,Lich_Chieu,Da_xoa")] PhimModel phimModel)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +63,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["idP_ChuDe"] = new SelectList(_context.LoaiChuDePhim, "idChuDe", "idChuDe", phimModel.idP_ChuDe);
             return View(phimModel);
         }
 
@@ -78,12 +74,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var phimModel = await _context.Phim.FindAsync(id);
+            var phimModel = await _context.PhimModel.FindAsync(id);
             if (phimModel == null)
             {
                 return NotFound();
             }
-            ViewData["idP_ChuDe"] = new SelectList(_context.LoaiChuDePhim, "idChuDe", "idChuDe", phimModel.idP_ChuDe);
             return View(phimModel);
         }
 
@@ -92,9 +87,9 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPhim,tenPhim,ngayDang,binhluanPhim,motaPhim,anhPhim,trangThaiPhim,idP_ChuDe")] PhimModel phimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_phim,Hinh_anh,Thoi_luong,Luot_xem,Gia_ve,Lich_Chieu,Da_xoa")] PhimModel phimModel)
         {
-            if (id != phimModel.idPhim)
+            if (id != phimModel.ID)
             {
                 return NotFound();
             }
@@ -108,7 +103,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PhimModelExists(phimModel.idPhim))
+                    if (!PhimModelExists(phimModel.ID))
                     {
                         return NotFound();
                     }
@@ -119,7 +114,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["idP_ChuDe"] = new SelectList(_context.LoaiChuDePhim, "idChuDe", "idChuDe", phimModel.idP_ChuDe);
             return View(phimModel);
         }
 
@@ -131,9 +125,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var phimModel = await _context.Phim
-                .Include(p => p.idChuDe)
-                .FirstOrDefaultAsync(m => m.idPhim == id);
+            var phimModel = await _context.PhimModel
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (phimModel == null)
             {
                 return NotFound();
@@ -147,15 +140,15 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var phimModel = await _context.Phim.FindAsync(id);
-            _context.Phim.Remove(phimModel);
+            var phimModel = await _context.PhimModel.FindAsync(id);
+            _context.PhimModel.Remove(phimModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PhimModelExists(int id)
         {
-            return _context.Phim.Any(e => e.idPhim == id);
+            return _context.PhimModel.Any(e => e.ID == id);
         }
     }
 }
