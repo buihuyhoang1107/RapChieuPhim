@@ -20,6 +20,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             _context = context;
         }
 
+        public void Test()
+        {
+            Console.WriteLine("awdawdwadwafshjvsukayfr");
+        }
+
         // GET: Admin/RapPhim
         public async Task<IActionResult> Index()
         {
@@ -132,16 +137,17 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(rapPhimModel);
+            return await DeleteConfirmed(rapPhimModel.ID);
         }
 
         // POST: Admin/RapPhim/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
-            _context.RapPhimModel.Remove(rapPhimModel);
+            rapPhimModel.Da_xoa = true;
+            _context.RapPhimModel.Update(rapPhimModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -149,6 +155,42 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         private bool RapPhimModelExists(int id)
         {
             return _context.RapPhimModel.Any(e => e.ID == id);
+        }
+
+        public async Task<IActionResult> Restore(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var rapPhimModel = await _context.RapPhimModel
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (rapPhimModel == null)
+            {
+                return NotFound();
+            }
+
+            return await RestoreConfirmed(rapPhimModel.ID);
+        }
+
+        // POST: Admin/RapPhim/Restore/5
+        [HttpPost, ActionName("Restore")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RestoreConfirmed(int? id)
+        {
+            var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
+            rapPhimModel.Da_xoa = false;
+            _context.RapPhimModel.Update(rapPhimModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost, ActionName("Test")]
+        [ValidateAntiForgeryToken]
+        public async void TestConfirmed(int? id)
+        {
+            Console.WriteLine("oki !");
         }
     }
 }
