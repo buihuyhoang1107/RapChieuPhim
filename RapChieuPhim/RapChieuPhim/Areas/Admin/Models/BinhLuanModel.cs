@@ -12,12 +12,13 @@ namespace RapChieuPhim.Areas.Admin.Models
 
         [Key]
         public int ID { get; set; }
-        public int ThanhVien_ID { get; set; }
+        public int NguoiDung_ID { get; set; }
         public int Phim_ID { get; set; }
         public string Noi_dung { get; set; }
 
-        [ForeignKey("ThanhVien_ID")]
-        public virtual ThanhVienModel idThanhVien { get; set; }
+        [ForeignKey("NguoiDung_ID")]
+        public virtual NguoiDungModel idNguoiDung { get; set; }
+
         [ForeignKey("Phim_ID")]
         public virtual PhimModel idPhim { get; set; }
     }

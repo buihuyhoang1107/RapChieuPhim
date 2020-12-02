@@ -15,10 +15,10 @@ namespace RapChieuPhim.Areas.Admin.Models
         [DataType(DataType.DateTime)]
         public DateTime Ngay_lap { get; set; }  
         public bool Da_xoa { get; set; }
-        public int ThanhVien_ID { get; set; }
+        public int NguoiDung_ID { get; set; }
 
-        [ForeignKey("ThanhVien_ID")]
-        public virtual ThanhVienModel idThanhVien { get; set; }
+        [ForeignKey("NguoiDung_ID")]
+        public virtual NguoiDungModel idNguoiDung { get; set; }
 
         public ICollection<VeXemPhimModel> lstVeXemPhim { get; set; }
     }
