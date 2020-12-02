@@ -23,7 +23,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/HoaDon
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.HoaDonModel.Include(h => h.idThanhVien);
+            var dPContext = _context.HoaDonModel.Include(h => h.idNguoiDung);
             return View(await dPContext.ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
 
             var hoaDonModel = await _context.HoaDonModel
-                .Include(h => h.idThanhVien)
+                .Include(h => h.idNguoiDung)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (hoaDonModel == null)
             {
@@ -49,7 +49,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/HoaDon/Create
         public IActionResult Create()
         {
-            ViewData["ThanhVien_ID"] = new SelectList(_context.Set<ThanhVienModel>(), "ID", "Discriminator");
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Tong_tien,Ngay_lap,Da_xoa,ThanhVien_ID")] HoaDonModel hoaDonModel)
+        public async Task<IActionResult> Create([Bind("ID,Tong_tien,Ngay_lap,Da_xoa,NguoiDung_ID")] HoaDonModel hoaDonModel)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ThanhVien_ID"] = new SelectList(_context.Set<ThanhVienModel>(), "ID", "Discriminator", hoaDonModel.ThanhVien_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", hoaDonModel.NguoiDung_ID);
             return View(hoaDonModel);
         }
 
@@ -83,7 +83,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ThanhVien_ID"] = new SelectList(_context.Set<ThanhVienModel>(), "ID", "Discriminator", hoaDonModel.ThanhVien_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", hoaDonModel.NguoiDung_ID);
             return View(hoaDonModel);
         }
 
@@ -92,7 +92,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Tong_tien,Ngay_lap,Da_xoa,ThanhVien_ID")] HoaDonModel hoaDonModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Tong_tien,Ngay_lap,Da_xoa,NguoiDung_ID")] HoaDonModel hoaDonModel)
         {
             if (id != hoaDonModel.ID)
             {
@@ -119,7 +119,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ThanhVien_ID"] = new SelectList(_context.Set<ThanhVienModel>(), "ID", "Discriminator", hoaDonModel.ThanhVien_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", hoaDonModel.NguoiDung_ID);
             return View(hoaDonModel);
         }
 
@@ -132,7 +132,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
 
             var hoaDonModel = await _context.HoaDonModel
-                .Include(h => h.idThanhVien)
+                .Include(h => h.idNguoiDung)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (hoaDonModel == null)
             {

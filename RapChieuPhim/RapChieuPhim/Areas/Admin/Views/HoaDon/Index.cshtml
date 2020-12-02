@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Da_xoa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idThanhVien)
+                @Html.DisplayNameFor(model => model.idNguoiDung)
             </th>
             <th></th>
         </tr>
@@ -39,9 +39,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Da_xoa)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.idThanhVien.Discriminator)
-            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.idNguoiDung.ID)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |

@@ -20,7 +20,8 @@ namespace RapChieuPhim.Areas.Admin.Models
         public bool Admin { get; set; }
         public bool Da_xoa { get; set; }
 
-
+        public ICollection<HoaDonModel> lstHoaDon { get; set; }
+        public ICollection<BinhLuanModel> lstBinhLuan { get; set; }
         public ICollection<TaiKhoanModel> lstTaiKhoan { get; set; }
 
     }

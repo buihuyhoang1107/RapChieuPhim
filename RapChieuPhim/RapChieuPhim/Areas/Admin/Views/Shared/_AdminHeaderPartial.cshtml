@@ -20,7 +20,7 @@
 
 
                     <li class="sidebar-item">
-                        <a asp-controller="Post" asp-action="Index" class='sidebar-link'>
+                        <a asp-controller="Phim" asp-action="Index" class='sidebar-link'>
                             <i data-feather="home" width="20"></i>
                             <span>Phim</span>
                         </a>
@@ -40,17 +40,17 @@
                     <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i data-feather="triangle" width="20"></i>
-                <span>Rạp phim</span>
+                <span>Người dùng</span>
             </a>
 
             <ul class="submenu ">
 
                 <li>
-                    <a href="component-alert.html">Phòng</a>
+                    <a asp-controller="Admin" asp-action="Index">Admin</a>
                 </li>
 
                 <li>
-                    <a href="component-badge.html">Lịch chiếu</a>
+                    <a asp-controller="NguoiDung" asp-action="Index">Khách hàng</a>
                 </li>
 
                 @*<li>
