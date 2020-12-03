@@ -13,6 +13,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
     [Area("Admin")]
     public class GheController : Controller
     {
+        private int Idselect = -1;
+
         private readonly DPContext _context;
 
         public GheController(DPContext context)
@@ -21,10 +23,29 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/Ghe
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
             var dPContext = _context.GheModel.Include(g => g.idPhongChieu);
-            return View(await dPContext.ToListAsync());
+            if (id == null)
+            {
+                if (this.Idselect == -1)
+                {
+                    return NotFound();
+                }
+                return View(await dPContext.Where(g => g.PhongChieu_ID == this.Idselect).ToListAsync());
+            }
+
+            var phongChieuModel = await _context.PhongChieuModel
+                .Include(p => p.idRapPhim)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (phongChieuModel == null)
+            {
+                return NotFound();
+            }
+
+            this.Idselect = (int)id;
+
+            return View(await dPContext.Where(g => g.PhongChieu_ID == id).ToListAsync());
         }
 
         // GET: Admin/Ghe/Details/5

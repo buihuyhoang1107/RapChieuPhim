@@ -13,6 +13,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
     [Area("Admin")]
     public class PhongChieuController : Controller
     {
+        private int Idselect = -1;
+
         private readonly DPContext _context;
 
         public PhongChieuController(DPContext context)
@@ -21,10 +23,27 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/PhongChieu
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
             var dPContext = _context.PhongChieuModel.Include(p => p.idRapPhim);
-            return View(await dPContext.ToListAsync());
+            if (id == null)
+            {
+                if (this.Idselect == -1)
+                {
+                    return NotFound();
+                }
+                return View(await dPContext.Where(p => p.RapPhim_ID == this.Idselect).ToListAsync());
+            }
+
+            var phongChieuModel = await _context.PhongChieuModel
+                .Include(p => p.idRapPhim)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (phongChieuModel == null)
+            {
+                return NotFound();
+            }
+            this.Idselect = (int)id;
+            return View(await dPContext.Where(p => p.RapPhim_ID == id).ToListAsync());
         }
 
         // GET: Admin/PhongChieu/Details/5
@@ -64,6 +83,29 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(phongChieuModel);
+                await _context.SaveChangesAsync();
+                for (int j = 0; j < 90; ++j)
+                {
+                    GheModel ghe = new GheModel();
+                    ghe.Da_xoa = false;
+                    ghe.Da_chon = false;
+                    ghe.Ten = (char)((j / 10) + 'A') + (j % 10).ToString();
+                    if ((j / 10 >= 2)
+                        && (j / 10 <= 6)
+                        && (j % 10 >= 2)
+                        && (j % 10 <= 7))
+                    {
+                        ghe.Loai = 1;
+                    }
+                    else
+                    {
+                        ghe.Loai = 0;
+                    }
+
+                    ghe.PhongChieu_ID = phongChieuModel.ID;
+                    _context.GheModel.Add(ghe);
+                    await _context.SaveChangesAsync();
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -151,6 +193,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
             phongChieuModel.Da_xoa = true;
             _context.PhongChieuModel.Update(phongChieuModel);
+            var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == id);
+            foreach (var ghe in listGhe)
+            {
+                ghe.Da_xoa = true;
+            }
+            _context.GheModel.UpdateRange(listGhe.ToArray());
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -185,7 +233,19 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public async Task<IActionResult> RestoreConfirmed(int id)
         {
             var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
+            if (phongChieuModel.idRapPhim.Da_xoa)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             phongChieuModel.Da_xoa = false;
+            _context.PhongChieuModel.Update(phongChieuModel);
+            var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == id);
+            foreach (var ghe in listGhe)
+            {
+                ghe.Da_xoa = false;
+            }
+            _context.GheModel.UpdateRange(listGhe.ToArray());
             _context.PhongChieuModel.Update(phongChieuModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

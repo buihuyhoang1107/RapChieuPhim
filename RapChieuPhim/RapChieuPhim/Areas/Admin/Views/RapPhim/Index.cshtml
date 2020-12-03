@@ -47,7 +47,9 @@
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
-                    <a asp-action="restore" asp-route-id="@item.ID">restore</a>
+                    <a asp-action="Restore" asp-route-id="@item.ID">Restore</a> <br />
+                    <a asp-area="Admin" asp-controller="PhongChieu" asp-action="Index" asp-route-id="@item.ID">PhongChieu</a>
+
                 </td>
             </tr>
         }

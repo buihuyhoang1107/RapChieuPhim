@@ -66,6 +66,39 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 _context.Add(rapPhimModel);
                 await _context.SaveChangesAsync();
+                for (int i = 0; i < 3; ++i)
+                {
+                    PhongChieuModel phongChieu = new PhongChieuModel();
+                    phongChieu.Da_xoa = false;
+                    phongChieu.Ten_Phong = "P" + i.ToString();
+                    phongChieu.RapPhim_ID = rapPhimModel.ID;
+                    _context.PhongChieuModel.Add(phongChieu);
+                    await _context.SaveChangesAsync();
+
+                    for (int j = 0; j < 90; ++j)
+                    {
+                        GheModel ghe = new GheModel();
+                        ghe.Da_xoa = false;
+                        ghe.Da_chon = false;
+                        ghe.Ten = (char)((j / 10) + 'A') + (j % 10).ToString();
+                        if ((j / 10 >= 2)
+                            && (j / 10 <= 6)
+                            && (j % 10 >= 2)
+                            && (j % 10 <= 7))
+                        {
+                            ghe.Loai = 1;
+                        }
+                        else
+                        {
+                            ghe.Loai = 0;
+                        }
+
+                        ghe.PhongChieu_ID = phongChieu.ID;
+                        _context.GheModel.Add(ghe);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(rapPhimModel);
@@ -148,15 +181,24 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
             rapPhimModel.Da_xoa = true;
             _context.RapPhimModel.Update(rapPhimModel);
+
+            var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
+            foreach (var phong in listPhong)
+            {
+                phong.Da_xoa = true;
+                var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
+                foreach (var ghe in listGhe)
+                {
+                    ghe.Da_xoa = true;
+                }
+                _context.GheModel.UpdateRange(listGhe.ToArray());
+            }
+            _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RapPhimModelExists(int id)
-        {
-            return _context.RapPhimModel.Any(e => e.ID == id);
-        }
-
+        // GET: Admin/RapPhim/Delete/5
         public async Task<IActionResult> Restore(int? id)
         {
             if (id == null)
@@ -182,11 +224,30 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
             rapPhimModel.Da_xoa = false;
             _context.RapPhimModel.Update(rapPhimModel);
+            var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
+            foreach (var phong in listPhong)
+            {
+                phong.Da_xoa = false;
+
+                var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
+                foreach (var ghe in listGhe)
+                {
+                    ghe.Da_xoa = false;
+                }
+                _context.GheModel.UpdateRange(listGhe.ToArray());
+
+            }
+            _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost, ActionName("Test")]
+        private bool RapPhimModelExists(int id)
+        {
+            return _context.RapPhimModel.Any(e => e.ID == id);
+        }
+
+        [HttpGet, ActionName("Test")]
         [ValidateAntiForgeryToken]
         public async void TestConfirmed(int? id)
         {
