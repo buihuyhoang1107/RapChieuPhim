@@ -49,6 +49,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/PhongChieu/Create
         public IActionResult Create()
         {
+            ViewBag.listRap = _context.RapPhimModel.ToList();
             ViewData["RapPhim_ID"] = new SelectList(_context.Set<RapPhimModel>(), "ID", "ID");
             return View();
         }
@@ -139,7 +140,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(phongChieuModel);
+            return await DeleteConfirmed(phongChieuModel.ID);
         }
 
         // POST: Admin/PhongChieu/Delete/5
@@ -148,7 +149,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
-            _context.PhongChieuModel.Remove(phongChieuModel);
+            phongChieuModel.Da_xoa = true;
+            _context.PhongChieuModel.Update(phongChieuModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -156,6 +158,37 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         private bool PhongChieuModelExists(int id)
         {
             return _context.PhongChieuModel.Any(e => e.ID == id);
+        }
+
+        // GET: Admin/PhongChieu/Restore/5
+        public async Task<IActionResult> Restore(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var phongChieuModel = await _context.PhongChieuModel
+                .Include(p => p.idRapPhim)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (phongChieuModel == null)
+            {
+                return NotFound();
+            }
+
+            return await RestoreConfirmed(phongChieuModel.ID);
+        }
+
+        // POST: Admin/PhongChieu/Restore/5
+        [HttpPost, ActionName("Restore")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RestoreConfirmed(int id)
+        {
+            var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
+            phongChieuModel.Da_xoa = false;
+            _context.PhongChieuModel.Update(phongChieuModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Ten_rap)
             </th>
             <th>
@@ -28,6 +31,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ten_rap)
                 </td>
@@ -48,22 +54,28 @@
     </tbody>
 </table>
 
-<div id="target">
-    Click here
-</div>
-<div id="other">
-    Trigger the handler
-</div>
+<@*div id="target">
+        Click here
+    </div>
+    <div id="other">
+        Trigger the handler
+    </div>
 
-@section Scripts{
-    <script>
-        $("#target").click(() => {
-            alert("Handler for .click() called.");
+    @section Scripts{
+        <script>
+            $("#target").click(() => {
+                alert("Handler for .click() called.");
 
-            $.get("https://localhost:44372/Admin/RapPhim/test");
-        });
-        $("#other").click(() => {
-            $("#target").click();
-        });
-    </script>
-}
+                $.ajax({
+                    method: "GET",
+                    [Http]
+                    //url: "https://localhost:44372/API/rapphim",
+                }).done((data) => {
+                    alert(data.toString());
+                };
+            });
+            $("#other").click(() => {
+                $("#target").click();
+            });
+        </script>
+    }*@

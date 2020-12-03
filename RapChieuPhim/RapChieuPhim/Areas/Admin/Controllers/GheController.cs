@@ -49,6 +49,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/Ghe/Create
         public IActionResult Create()
         {
+            ViewBag.listPhong = _context.PhongChieuModel.ToList();
             ViewData["PhongChieu_ID"] = new SelectList(_context.Set<PhongChieuModel>(), "ID", "ID");
             return View();
         }
@@ -139,7 +140,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(gheModel);
+            return await DeleteConfirmed(gheModel.ID);
         }
 
         // POST: Admin/Ghe/Delete/5
@@ -148,7 +149,39 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var gheModel = await _context.GheModel.FindAsync(id);
-            _context.GheModel.Remove(gheModel);
+            gheModel.Da_xoa = true;
+            _context.GheModel.Update(gheModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Admin/Ghe/Delete/5
+        public async Task<IActionResult> Restore(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gheModel = await _context.GheModel
+                .Include(g => g.idPhongChieu)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (gheModel == null)
+            {
+                return NotFound();
+            }
+
+            return await RestoreConfirmed(gheModel.ID);
+        }
+
+        // POST: Admin/Ghe/Delete/5
+        [HttpPost, ActionName("Restore")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RestoreConfirmed(int id)
+        {
+            var gheModel = await _context.GheModel.FindAsync(id);
+            gheModel.Da_xoa = false;
+            _context.GheModel.Update(gheModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -395,7 +395,6 @@ d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\BinhLuan\Edit.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\BinhLuan\Index.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Create.cshtml.g.cs
-d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Delete.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Details.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Edit.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Index.cshtml.g.cs
@@ -420,7 +419,6 @@ d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Phim\Edit.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Phim\Index.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Create.cshtml.g.cs
-d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Delete.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Details.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Edit.cshtml.g.cs
 d:\Desktop\doan_asp\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Index.cshtml.g.cs
