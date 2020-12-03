@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main">
+    <div class="error-content">
+        @await Html.PartialAsync("../Shared/_TopHeaderPartial.cshtml")
+        <div class="error-404 text-center">
+            <h2>404</h2>
+            <p>Sorry this was unexpected</p>
+            <a class="b-home" href="Home">Back to Home</a>
+        </div>
+        @await Html.PartialAsync("../Shared/_FooterPartial.cshtml")
+    </div>
+</div>
+<div class="clearfix"></div>
+
