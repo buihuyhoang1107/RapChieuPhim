@@ -145,12 +145,13 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(gheModel);
         }
 
-        // GET: Admin/Ghe/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Admin/Ghe/Delete/5
+        [HttpPost]
+        public async Task<bool> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var gheModel = await _context.GheModel
@@ -158,30 +159,35 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (gheModel == null)
             {
-                return NotFound();
+                return false;
             }
-
-            return await DeleteConfirmed(gheModel.ID);
-        }
-
-        // POST: Admin/Ghe/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var gheModel = await _context.GheModel.FindAsync(id);
+            gheModel = await _context.GheModel.FindAsync(id);
             gheModel.Da_xoa = true;
             _context.GheModel.Update(gheModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
 
-        // GET: Admin/Ghe/Delete/5
-        public async Task<IActionResult> Restore(int? id)
+        //// POST: Admin/Ghe/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        ////[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var gheModel = await _context.GheModel.FindAsync(id);
+        //    gheModel.Da_xoa = true;
+        //    _context.GheModel.Update(gheModel);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+
+        // POST: Admin/Ghe/Delete/5
+        [HttpPost]
+        public async Task<bool> Restore(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var gheModel = await _context.GheModel
@@ -189,23 +195,26 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (gheModel == null)
             {
-                return NotFound();
+                return false;
             }
-
-            return await RestoreConfirmed(gheModel.ID);
-        }
-
-        // POST: Admin/Ghe/Delete/5
-        [HttpPost, ActionName("Restore")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RestoreConfirmed(int id)
-        {
-            var gheModel = await _context.GheModel.FindAsync(id);
+            gheModel = await _context.GheModel.FindAsync(id);
             gheModel.Da_xoa = false;
             _context.GheModel.Update(gheModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
+
+        //// POST: Admin/Ghe/Delete/5
+        //[HttpPost]
+        ////[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> RestoreConfirmed(int id)
+        //{
+        //    var gheModel = await _context.GheModel.FindAsync(id);
+        //    gheModel.Da_xoa = false;
+        //    _context.GheModel.Update(gheModel);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool GheModelExists(int id)
         {

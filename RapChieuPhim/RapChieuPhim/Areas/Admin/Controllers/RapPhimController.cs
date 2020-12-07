@@ -155,30 +155,23 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(rapPhimModel);
         }
 
-        // GET: Admin/RapPhim/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Admin/RapPhim/Delete/5
+        [HttpPost]
+        public async Task<bool> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var rapPhimModel = await _context.RapPhimModel
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (rapPhimModel == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return await DeleteConfirmed(rapPhimModel.ID);
-        }
-
-        // POST: Admin/RapPhim/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
-        {
-            var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
+            rapPhimModel = await _context.RapPhimModel.FindAsync(id);
             rapPhimModel.Da_xoa = true;
             _context.RapPhimModel.Update(rapPhimModel);
 
@@ -195,33 +188,51 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
 
-        // GET: Admin/RapPhim/Delete/5
-        public async Task<IActionResult> Restore(int? id)
+        //// POST: Admin/RapPhim/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int? id)
+        //{
+        //    var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
+        //    rapPhimModel.Da_xoa = true;
+        //    _context.RapPhimModel.Update(rapPhimModel);
+
+        //    var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
+        //    foreach (var phong in listPhong)
+        //    {
+        //        phong.Da_xoa = true;
+        //        var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
+        //        foreach (var ghe in listGhe)
+        //        {
+        //            ghe.Da_xoa = true;
+        //        }
+        //        _context.GheModel.UpdateRange(listGhe.ToArray());
+        //    }
+        //    _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        // POST: Admin/RapPhim/Delete/5
+        [HttpPost]
+        public async Task<bool> Restore(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var rapPhimModel = await _context.RapPhimModel
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (rapPhimModel == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return await RestoreConfirmed(rapPhimModel.ID);
-        }
-
-        // POST: Admin/RapPhim/Restore/5
-        [HttpPost, ActionName("Restore")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RestoreConfirmed(int? id)
-        {
-            var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
+            rapPhimModel = await _context.RapPhimModel.FindAsync(id);
             rapPhimModel.Da_xoa = false;
             _context.RapPhimModel.Update(rapPhimModel);
             var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
@@ -239,19 +250,38 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
+
+        //// POST: Admin/RapPhim/Restore/5
+        //[HttpPost, ActionName("Restore")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> RestoreConfirmed(int? id)
+        //{
+        //    var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
+        //    rapPhimModel.Da_xoa = false;
+        //    _context.RapPhimModel.Update(rapPhimModel);
+        //    var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
+        //    foreach (var phong in listPhong)
+        //    {
+        //        phong.Da_xoa = false;
+
+        //        var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
+        //        foreach (var ghe in listGhe)
+        //        {
+        //            ghe.Da_xoa = false;
+        //        }
+        //        _context.GheModel.UpdateRange(listGhe.ToArray());
+
+        //    }
+        //    _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool RapPhimModelExists(int id)
         {
             return _context.RapPhimModel.Any(e => e.ID == id);
-        }
-
-        [HttpGet, ActionName("Test")]
-        [ValidateAntiForgeryToken]
-        public async void TestConfirmed(int? id)
-        {
-            Console.WriteLine("oki !");
         }
     }
 }

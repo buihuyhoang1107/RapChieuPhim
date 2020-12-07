@@ -5,21 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Nancy.Json;
 using RapChieuPhim.Areas.Admin.Data;
 using RapChieuPhim.Areas.Admin.Models;
+using Newtonsoft.Json.Linq;
 
 namespace RapChieuPhim.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PhongChieuController : Controller
     {
-        private int Idselect = -1;
-
         private readonly DPContext _context;
 
         public PhongChieuController(DPContext context)
         {
             _context = context;
+        }
+
+        public string Test(int id)
+        {
+            return "[{\"error\":\"Oki !\"},{\"error\":\"Oki !\"},{\"error\":\"Oki !\"},{\"error\":\"Oki !\"},{\"error\":\"Oki !\"}]";
         }
 
         // GET: Admin/PhongChieu
@@ -28,11 +33,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var dPContext = _context.PhongChieuModel.Include(p => p.idRapPhim);
             if (id == null)
             {
-                if (this.Idselect == -1)
-                {
-                    return NotFound();
-                }
-                return View(await dPContext.Where(p => p.RapPhim_ID == this.Idselect).ToListAsync());
+                return NotFound();
             }
 
             var phongChieuModel = await _context.PhongChieuModel
@@ -42,7 +43,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            this.Idselect = (int)id;
             return View(await dPContext.Where(p => p.RapPhim_ID == id).ToListAsync());
         }
 
@@ -166,12 +166,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(phongChieuModel);
         }
 
-        // GET: Admin/PhongChieu/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Admin/PhongChieu/Delete/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<bool> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var phongChieuModel = await _context.PhongChieuModel
@@ -179,18 +181,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (phongChieuModel == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return await DeleteConfirmed(phongChieuModel.ID);
-        }
-
-        // POST: Admin/PhongChieu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
+            phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
             phongChieuModel.Da_xoa = true;
             _context.PhongChieuModel.Update(phongChieuModel);
             var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == id);
@@ -200,20 +194,30 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             _context.GheModel.UpdateRange(listGhe.ToArray());
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return true;
         }
 
-        private bool PhongChieuModelExists(int id)
-        {
-            return _context.PhongChieuModel.Any(e => e.ID == id);
-        }
+        // POST: Admin/PhongChieu/Delete/5
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+
+        //}
 
         // GET: Admin/PhongChieu/Restore/5
-        public async Task<IActionResult> Restore(int? id)
+        //public async Task<IActionResult> Restore(int? id)
+        //{
+
+        //}
+
+        // POST: Admin/PhongChieu/Restore/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<bool> Restore(int id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var phongChieuModel = await _context.PhongChieuModel
@@ -221,21 +225,13 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (phongChieuModel == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return await RestoreConfirmed(phongChieuModel.ID);
-        }
-
-        // POST: Admin/PhongChieu/Restore/5
-        [HttpPost, ActionName("Restore")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RestoreConfirmed(int id)
-        {
-            var phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
+            phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
             if (phongChieuModel.idRapPhim.Da_xoa)
             {
-                return RedirectToAction(nameof(Index));
+                return false;
             }
 
             phongChieuModel.Da_xoa = false;
@@ -248,7 +244,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             _context.GheModel.UpdateRange(listGhe.ToArray());
             _context.PhongChieuModel.Update(phongChieuModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return true;
         }
+
+        private bool PhongChieuModelExists(int id)
+        {
+            return _context.PhongChieuModel.Any(e => e.ID == id);
+        }
+
     }
 }
