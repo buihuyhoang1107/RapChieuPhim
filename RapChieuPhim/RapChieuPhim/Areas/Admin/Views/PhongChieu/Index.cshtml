@@ -13,35 +13,98 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Ten_Phong)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Da_xoa)
+                @Html.DisplayNameFor(model => model.idRapPhim)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idRapPhim)
+                @Html.DisplayNameFor(model => model.idRapPhim.Ten_rap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Da_xoa)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ten_Phong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Da_xoa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idRapPhim.ID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ten_Phong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idRapPhim.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idRapPhim.Ten_rap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Da_xoa)
+                </td>
+                <td>
+                    <a type="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a type="button" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a type="button" class="Delete" style="color:#007bff;" name="@item.ID">Delete</a> |
+                    <a type="button" class="Restore" style="color:#007bff;" name="@item.ID">Restore</a> <br />
+                    <a type="button" asp-area="Admin" asp-controller="Ghe" asp-action="Index" asp-route-id="@item.ID"> Ghes </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(".Delete").click((e) => {
+
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                url: `./RapPhim/Delete/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[4]
+                        .children[0]
+                        .checked = true;
+                }
+            });
+        });
+        $(".Restore").click((e) => {
+            console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                url: `./RapPhim/Restore/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[4]
+                        .children[0]
+                        .checked = false;
+                }
+            });
+        });
+    </script>
+}
