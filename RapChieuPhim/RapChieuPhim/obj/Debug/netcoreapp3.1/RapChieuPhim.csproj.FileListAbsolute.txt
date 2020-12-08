@@ -182,7 +182,6 @@ D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TaiKhoan\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TaiKhoan\Index.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Create.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Delete.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Details.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Ghe\Index.cshtml.g.cs
@@ -202,12 +201,10 @@ D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Phim\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Phim\Index.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Create.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Delete.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Details.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PhongChieu\Index.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Create.cshtml.g.cs
-D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Delete.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Details.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Edit.cshtml.g.cs
 D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\RapPhim\Index.cshtml.g.cs
@@ -923,3 +920,5 @@ d:\Desktop\doan_asp\Liem\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapCh
 d:\Desktop\doan_asp\Liem\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.genruntimeconfig.cache
 d:\Desktop\doan_asp\Liem\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
 d:\Desktop\doan_asp\Liem\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\Nancy.dll
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+D:\HK5\ASP.Net\DoAn\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\Nancy.dll

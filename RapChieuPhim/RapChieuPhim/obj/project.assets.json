@@ -9137,19 +9137,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KucKung\\.nuget\\packages\\": {}
+    "C:\\Users\\kimhu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "projectUniqueName": "D:\\HK5\\ASP.Net\\DoAn\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
       "projectName": "RapChieuPhim",
-      "projectPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
-      "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
-      "outputPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\obj\\",
+      "projectPath": "D:\\HK5\\ASP.Net\\DoAn\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "packagesPath": "C:\\Users\\kimhu\\.nuget\\packages\\",
+      "outputPath": "D:\\HK5\\ASP.Net\\DoAn\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kimhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9161,7 +9161,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9173,7 +9172,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -9220,7 +9218,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
