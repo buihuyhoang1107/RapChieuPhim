@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    @await Html.PartialAsync("~/Views/Shared/_TaiKhoanHeadPartial.cshtml")
+    @await Html.PartialAsync("_CssPartial.cshtml")
     @RenderSection("css", required: false)
 </head>
 <body>
-    @RenderBody()
-    @await Html.PartialAsync("~/Views/Shared/_TaiKhoanFoodPartial.cshtml")
-    @RenderSection("Scripts", required: false)
+   
+    <div class="full">
+        @await Html.PartialAsync("_MenuPartial.cshtml")
+        @RenderBody()
+        
+    </div>
+
+    
 </body>
 </html>

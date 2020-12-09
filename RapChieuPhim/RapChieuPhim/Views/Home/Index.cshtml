@@ -2,63 +2,122 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('../Login/images/bg-01.jpg');">
-        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-            <form action="home/Verify" method="post" class="login100-form validate-form flex-sb flex-w" >
-                <span class="login100-form-title p-b-53">
-                    Đăng nhập
-                </span>
+<div class="main">
+    <div class="header">
+        @await Html.PartialAsync("../Shared/_TopHeaderPartial.cshtml")
 
-                <a href="#" class="btn-face m-b-20">
-                    <i class="fa fa-facebook-official"></i>
-                    Facebook
-                </a>
-
-                <a href="#" class="btn-google m-b-20">
-                    <img src="~/Login/images/icons/icon-google.png" alt="GOOGLE">
-                    Google
-                </a>
-
-                <div class="p-t-31 p-b-9">
-                    <span class="txt1">
-                        Username
-                    </span>
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input class="input100" type="text" name="Ten_dang_nhap">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="p-t-13 p-b-9">
-                    <span class="txt1">
-                        Password
-                    </span>            
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="Mat_khau">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn">
-                        Sign In
-                    </button>
-                </div>
-
-                <div class="w-full text-center p-t-55">
-                    <span class="txt2">
-                        Not a member?
-                    </span>
-
-                    <a href="#" class="txt2 bo1">
-                        Sign up now
-                    </a>
-                </div>
-            </form>
+        <div class="header-info">
+            <h1>BIG HERO 6</h1>
+            <p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
+            <p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  8,5/10</p>
+            <p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
+            <p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp; 7 November 2014</p>
+            <p class="special">The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.</p>
+            <a class="video" href="#"><i class="video1"></i>WATCH TRAILER</a>
+            <a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
         </div>
     </div>
+    <div class="review-slider">
+        <ul id="flexiselDemo1">
+            <li><img src="~/images/r1.jpg" alt="" /></li>
+            <li><img src="~/images/r2.jpg" alt="" /></li>
+            <li><img src="~/images/r3.jpg" alt="" /></li>
+            <li><img src="~/images/r4.jpg" alt="" /></li>
+            <li><img src="~/images/r5.jpg" alt="" /></li>
+            <li><img src="~/images/r6.jpg" alt="" /></li>
+        </ul>
+        <script type="text/javascript">
+            $(window).load(function () {
+
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 6,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: false,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 2
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 3
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 4
+                        }
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="~/js/jquery.flexisel.js"></script>
+    </div>
+    <div class="video">
+        <iframe src="https://www.youtube.com/embed/2LqzF5WauAw" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="news">
+        <div class="col-md-6 news-left-grid">
+            <h3>Don’t be late,</h3>
+            <h2>Book your ticket now!</h2>
+            <h4>Easy, simple & fast.</h4>
+            <a href="#"><i class="book"></i>BOOK TICKET</a>
+            <p>Get Discount up to <strong>10%</strong> if you are a member!</p>
+        </div>
+        <div class="col-md-6 news-right-grid">
+            <h3>News</h3>
+            <div class="news-grid">
+                <h5>Lorem Ipsum Dolor Sit Amet</h5>
+                <label>Nov 11 2014</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+            </div>
+            <div class="news-grid">
+                <h5>Lorem Ipsum Dolor Sit Amet</h5>
+                <label>Nov 11 2014</label>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+            </div>
+            <a class="more" href="#">MORE</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="more-reviews">
+        <ul id="flexiselDemo2">
+            <li><img src="~/images/m1.jpg" alt="" /></li>
+            <li><img src="~/images/m2.jpg" alt="" /></li>
+            <li><img src="~/images/m3.jpg" alt="" /></li>
+            <li><img src="~/images/m4.jpg" alt="" /></li>
+        </ul>
+        <script type="text/javascript">
+            $(window).load(function () {
+
+                $("#flexiselDemo2").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: false,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 2
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 3
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="~/js/jquery.flexisel.js"></script>
+    </div>
+    @await Html.PartialAsync("../Shared/_FooterPartial.cshtml")
 </div>
-
-
-<div id="dropDownSelect1"></div>
+<div class="clearfix"></div>
