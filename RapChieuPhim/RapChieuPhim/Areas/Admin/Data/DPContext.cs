@@ -25,5 +25,9 @@ namespace RapChieuPhim.Areas.Admin.Data
         public DbSet<RapChieuPhim.Areas.Admin.Models.VeXemPhimModel> VeXemPhimModel { get; set; }
         public DbSet<RapChieuPhim.Areas.Admin.Models.XuatChieuModel> XuatChieuModel { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedData();
+        }
     }
 }

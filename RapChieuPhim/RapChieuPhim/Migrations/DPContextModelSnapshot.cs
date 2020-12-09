@@ -26,20 +26,20 @@ namespace RapChieuPhim.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("NguoiDung_ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Noi_dung")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Phim_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ThanhVien_ID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("Phim_ID");
+                    b.HasIndex("NguoiDung_ID");
 
-                    b.HasIndex("ThanhVien_ID");
+                    b.HasIndex("Phim_ID");
 
                     b.ToTable("BinhLuanModel");
                 });
@@ -86,7 +86,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<DateTime>("Ngay_lap")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ThanhVien_ID")
+                    b.Property<int>("NguoiDung_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Tong_tien")
@@ -94,7 +94,7 @@ namespace RapChieuPhim.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ThanhVien_ID");
+                    b.HasIndex("NguoiDung_ID");
 
                     b.ToTable("HoaDonModel");
                 });
@@ -138,10 +138,6 @@ namespace RapChieuPhim.Migrations
                     b.Property<string>("Dia_chi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -157,8 +153,6 @@ namespace RapChieuPhim.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("NguoiDungModel");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("NguoiDungModel");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.PhimModel", b =>
@@ -192,6 +186,52 @@ namespace RapChieuPhim.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("PhimModel");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 4,
+                            Da_xoa = 0,
+                            Gia_ve = "50000",
+                            Hinh_anh = "",
+                            Lich_Chieu = "2,4,6",
+                            Luot_xem = "3188",
+                            Ten_phim = "Dekaranger 10 years after",
+                            Thoi_luong = 130
+                        },
+                        new
+                        {
+                            ID = 1,
+                            Da_xoa = 0,
+                            Gia_ve = "80000",
+                            Hinh_anh = "",
+                            Lich_Chieu = "5,6",
+                            Luot_xem = "2203",
+                            Ten_phim = "Pacific Rim (2013)",
+                            Thoi_luong = 131
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Da_xoa = 0,
+                            Gia_ve = "100000",
+                            Hinh_anh = "",
+                            Lich_Chieu = "2,3,5,7",
+                            Luot_xem = "5849",
+                            Ten_phim = "Iron Man 3",
+                            Thoi_luong = 190
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Da_xoa = 0,
+                            Gia_ve = "55000",
+                            Hinh_anh = "",
+                            Lich_Chieu = "4,6,CN",
+                            Luot_xem = "1435",
+                            Ten_phim = "Spider Man: Home Coming",
+                            Thoi_luong = 133
+                        });
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.PhongChieuModel", b =>
@@ -331,37 +371,23 @@ namespace RapChieuPhim.Migrations
                     b.ToTable("XuatChieuModel");
                 });
 
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.AdminModel", b =>
-                {
-                    b.HasBaseType("RapChieuPhim.Areas.Admin.Models.NguoiDungModel");
-
-                    b.HasDiscriminator().HasValue("AdminModel");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.ThanhVienModel", b =>
-                {
-                    b.HasBaseType("RapChieuPhim.Areas.Admin.Models.NguoiDungModel");
-
-                    b.HasDiscriminator().HasValue("ThanhVienModel");
-                });
-
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.BinhLuanModel", b =>
                 {
+                    b.HasOne("RapChieuPhim.Areas.Admin.Models.NguoiDungModel", "idNguoiDung")
+                        .WithMany("lstBinhLuan")
+                        .HasForeignKey("NguoiDung_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.PhimModel", "idPhim")
                         .WithMany("lstBinhLuan")
                         .HasForeignKey("Phim_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RapChieuPhim.Areas.Admin.Models.ThanhVienModel", "idThanhVien")
-                        .WithMany("lstBinhLuan")
-                        .HasForeignKey("ThanhVien_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("idNguoiDung");
 
                     b.Navigation("idPhim");
-
-                    b.Navigation("idThanhVien");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.GheModel", b =>
@@ -377,13 +403,13 @@ namespace RapChieuPhim.Migrations
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.HoaDonModel", b =>
                 {
-                    b.HasOne("RapChieuPhim.Areas.Admin.Models.ThanhVienModel", "idThanhVien")
+                    b.HasOne("RapChieuPhim.Areas.Admin.Models.NguoiDungModel", "idNguoiDung")
                         .WithMany("lstHoaDon")
-                        .HasForeignKey("ThanhVien_ID")
+                        .HasForeignKey("NguoiDung_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("idThanhVien");
+                    b.Navigation("idNguoiDung");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.LichChieuModel", b =>
@@ -482,6 +508,10 @@ namespace RapChieuPhim.Migrations
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.NguoiDungModel", b =>
                 {
+                    b.Navigation("lstBinhLuan");
+
+                    b.Navigation("lstHoaDon");
+
                     b.Navigation("lstTaiKhoan");
                 });
 
@@ -506,13 +536,6 @@ namespace RapChieuPhim.Migrations
                     b.Navigation("lstPhongChieu");
 
                     b.Navigation("lstVeXemPhim");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.ThanhVienModel", b =>
-                {
-                    b.Navigation("lstBinhLuan");
-
-                    b.Navigation("lstHoaDon");
                 });
 #pragma warning restore 612, 618
         }
