@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
+    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
   },
   "projects": {
-    "C:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
+    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectUniqueName": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "projectName": "RapChieuPhim",
-        "projectPath": "C:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
+        "projectPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
+        "outputPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,7 +50,7 @@
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[3.1.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

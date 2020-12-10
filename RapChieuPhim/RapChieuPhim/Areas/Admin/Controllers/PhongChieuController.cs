@@ -228,6 +228,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return false;
             }
 
+            //neu rap phim da xoa thi khong cho restore phong chieu cua rap
+            var rapPhim = await _context.RapPhimModel.FirstOrDefaultAsync(rp => rp.ID == phongChieuModel.RapPhim_ID);
+            if (rapPhim.Da_xoa)
+            {
+                Console.WriteLine("aaaaaaaaaaadwa");
+                return false;
+            }
+
             phongChieuModel = await _context.PhongChieuModel.FindAsync(id);
             if (phongChieuModel.idRapPhim.Da_xoa)
             {

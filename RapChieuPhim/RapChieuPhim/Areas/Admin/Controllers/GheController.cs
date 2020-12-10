@@ -197,6 +197,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return false;
             }
+
+            //neu phong da bi xoa thi khong cho khoi phuc ghe
+            var phongChieu = await _context.PhongChieuModel.FirstOrDefaultAsync(p => p.ID == gheModel.PhongChieu_ID);
+            if (phongChieu.Da_xoa)
+            {
+                return false;
+            }
+
             gheModel = await _context.GheModel.FindAsync(id);
             gheModel.Da_xoa = false;
             _context.GheModel.Update(gheModel);
