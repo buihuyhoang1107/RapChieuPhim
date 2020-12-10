@@ -63,7 +63,8 @@
             const id = parseInt($(e.currentTarget)[0].name);
             $.ajax({
                 type: 'POST',
-                url: `./Delete/${id}`,
+                //chay đc rồi nha
+                url: `./RapPhim/Delete/${id}`,
                 dataType: 'json',
                 data: null,
                 success: function (data) {
@@ -83,7 +84,8 @@
             const id = parseInt($(e.currentTarget)[0].name);
             $.ajax({
                 type: 'POST',
-                url: `./Restore/${id}`,
+                //chay đc rồi nha
+                url: `./RapPhim/Restore/${id}`,
                 dataType: 'json',
                 data: null,
                 success: function (data) {
