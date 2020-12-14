@@ -22,7 +22,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Ghe
+        // GET: Admin/Ghe/
         public async Task<IActionResult> Index(int? id)
         {
             var dPContext = _context.GheModel.Include(g => g.idPhongChieu);
