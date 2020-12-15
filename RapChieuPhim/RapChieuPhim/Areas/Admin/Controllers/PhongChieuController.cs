@@ -35,8 +35,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
-            var dPContext = _context.PhongChieuModel.Where(p => p.RapPhim_ID == id).ToListAsync();
+            var dPContext = _context.PhongChieuModel
+                .Include(p => p.idRapPhim)
+                .Where(p => p.RapPhim_ID == id)
+                .ToListAsync();
             return View(await dPContext);
         }
 
