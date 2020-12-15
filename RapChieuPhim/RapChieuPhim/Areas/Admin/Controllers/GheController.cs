@@ -28,7 +28,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var dPContext = _context.GheModel
                 .Include(g => g.idPhongChieu)
                 .Where(g => g.PhongChieu_ID == id).ToListAsync();

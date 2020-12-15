@@ -26,7 +26,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var dPContext = _context.LichChieuModel
                 .Include(lc => lc.idRapPhim)
                 .Where(p => p.RapPhim_ID == id).ToListAsync();
