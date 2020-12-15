@@ -34,9 +34,30 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href='javascript:history.go(-1)'>Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("#FormSubmit").submit(function (e) {
+            e.preventDefault();
+            const post_url = $(this).attr("action");
+            const request_method = $(this).attr("method");
+            const form_data = $(this).serialize(); //Encode form elements for submission
+
+            $.ajax({
+                url: post_url,
+                type: request_method,
+                data: form_data
+            }).done(function (response) { //
+                if (response) {
+                    alert("Thêm thành công !");
+                    location.reload();
+                } else {
+                    alert("Thêm không thành công !");
+                }
+            });
+        });
+    </script>
 }

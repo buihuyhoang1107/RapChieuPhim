@@ -48,7 +48,8 @@
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a type="button" class="Delete" style="color:#007bff;" name="@item.ID">Delete</a> |
                     <a type="button" class="Restore" style="color:#007bff;" name="@item.ID">Restore</a> <br />
-                    <a asp-area="Admin" asp-controller="PhongChieu" asp-action="Index" asp-route-id="@item.ID">PhongChieu</a>
+                    <a asp-area="Admin" asp-controller="PhongChieu" asp-action="Index" asp-route-id="@item.ID">PhongChieu</a> |
+                    <a asp-area="Admin" asp-controller="LichChieu" asp-action="Index" asp-route-id="@item.ID">LichChieu</a>
 
                 </td>
             </tr>

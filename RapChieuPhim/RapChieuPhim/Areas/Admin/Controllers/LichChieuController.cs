@@ -21,10 +21,20 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/LichChieu
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    var dPContext = _context.LichChieuModel.Include(l => l.idRapPhim);
+        //    return View(await dPContext.ToListAsync());
+        //} 
+        public async Task<IActionResult> Index(int? id)
         {
-            var dPContext = _context.LichChieuModel.Include(l => l.idRapPhim);
-            return View(await dPContext.ToListAsync());
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dPContext = _context.LichChieuModel.Where(p => p.RapPhim_ID == id).ToListAsync();
+            return View(await dPContext);
         }
 
         // GET: Admin/LichChieu/Details/5
@@ -64,7 +74,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 _context.Add(lichChieuModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return (await Index(lichChieuModel.RapPhim_ID));
+
             }
             ViewData["RapPhim_ID"] = new SelectList(_context.Set<RapPhimModel>(), "ID", "ID", lichChieuModel.RapPhim_ID);
             return View(lichChieuModel);
@@ -123,12 +134,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(lichChieuModel);
         }
 
-        // GET: Admin/LichChieu/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Admin/LichChieu/Delete/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<bool> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var lichChieuModel = await _context.LichChieuModel
@@ -136,21 +149,37 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (lichChieuModel == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return View(lichChieuModel);
+            lichChieuModel = await _context.LichChieuModel.FindAsync(id);
+            lichChieuModel.Da_xoa = true;
+            _context.LichChieuModel.Update(lichChieuModel);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        // POST: Admin/LichChieu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<bool> Restore(int? id)
         {
-            var lichChieuModel = await _context.LichChieuModel.FindAsync(id);
-            _context.LichChieuModel.Remove(lichChieuModel);
+            if (id == null)
+            {
+                return false;
+            }
+
+            var lichChieuModel = await _context.LichChieuModel
+                .Include(l => l.idRapPhim)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (lichChieuModel == null)
+            {
+                return false;
+            }
+
+            lichChieuModel = await _context.LichChieuModel.FindAsync(id);
+            lichChieuModel.Da_xoa = false;
+            _context.LichChieuModel.Update(lichChieuModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
 
         private bool LichChieuModelExists(int id)
