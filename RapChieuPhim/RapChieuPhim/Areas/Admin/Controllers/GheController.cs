@@ -13,7 +13,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
     [Area("Admin")]
     public class GheController : Controller
     {
-        private int Idselect = -1;
 
         private readonly DPContext _context;
 
@@ -25,27 +24,13 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/Ghe/
         public async Task<IActionResult> Index(int? id)
         {
-            var dPContext = _context.GheModel.Include(g => g.idPhongChieu);
             if (id == null)
-            {
-                if (this.Idselect == -1)
-                {
-                    return NotFound();
-                }
-                return View(await dPContext.Where(g => g.PhongChieu_ID == this.Idselect).ToListAsync());
-            }
-
-            var phongChieuModel = await _context.PhongChieuModel
-                .Include(p => p.idRapPhim)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (phongChieuModel == null)
             {
                 return NotFound();
             }
 
-            this.Idselect = (int)id;
-
-            return View(await dPContext.Where(g => g.PhongChieu_ID == id).ToListAsync());
+            var dPContext = _context.GheModel.Where(g => g.PhongChieu_ID == id).ToListAsync();
+            return View(await dPContext);
         }
 
         // GET: Admin/Ghe/Details/5
@@ -114,11 +99,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten,Loai,Da_chon,Da_xoa,PhongChieu_ID")] GheModel gheModel)
+        public async Task<bool> Edit(int id, [Bind("ID,Ten,Loai,Da_chon,Da_xoa,PhongChieu_ID")] GheModel gheModel)
         {
             if (id != gheModel.ID)
             {
-                return NotFound();
+                return false;
             }
 
             if (ModelState.IsValid)
@@ -128,21 +113,23 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     _context.Update(gheModel);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException err)
                 {
                     if (!GheModelExists(gheModel.ID))
                     {
-                        return NotFound();
+                        return false;
                     }
                     else
                     {
-                        throw;
+                        Console.WriteLine(err);
+                        return false;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return true;
             }
             ViewData["PhongChieu_ID"] = new SelectList(_context.Set<PhongChieuModel>(), "ID", "ID", gheModel.PhongChieu_ID);
-            return View(gheModel);
+
+            return false;
         }
 
         // POST: Admin/Ghe/Delete/5
@@ -167,19 +154,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return true;
         }
-
-        //// POST: Admin/Ghe/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        ////[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var gheModel = await _context.GheModel.FindAsync(id);
-        //    gheModel.Da_xoa = true;
-        //    _context.GheModel.Update(gheModel);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
 
         // POST: Admin/Ghe/Delete/5
         [HttpPost]

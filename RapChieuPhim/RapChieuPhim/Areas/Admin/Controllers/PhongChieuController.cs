@@ -30,20 +30,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/PhongChieu
         public async Task<IActionResult> Index(int? id)
         {
-            var dPContext = _context.PhongChieuModel.Include(p => p.idRapPhim);
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var phongChieuModel = await _context.PhongChieuModel
-                .Include(p => p.idRapPhim)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (phongChieuModel == null)
-            {
-                return NotFound();
-            }
-            return View(await dPContext.Where(p => p.RapPhim_ID == id).ToListAsync());
+            var dPContext = _context.PhongChieuModel.Where(p => p.RapPhim_ID == id).ToListAsync();
+            return View(await dPContext);
         }
 
         // GET: Admin/PhongChieu/Details/5
@@ -78,7 +72,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Ten_Phong,Da_xoa,RapPhim_ID")] PhongChieuModel phongChieuModel)
+        public async Task<bool> Create([Bind("ID,Ten_Phong,Da_xoa,RapPhim_ID")] PhongChieuModel phongChieuModel)
         {
             if (ModelState.IsValid)
             {
@@ -107,10 +101,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     await _context.SaveChangesAsync();
                 }
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return true;
             }
             ViewData["RapPhim_ID"] = new SelectList(_context.Set<RapPhimModel>(), "ID", "ID", phongChieuModel.RapPhim_ID);
-            return View(phongChieuModel);
+            return false;
         }
 
         // GET: Admin/PhongChieu/Edit/5
@@ -126,6 +120,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.listRap = _context.RapPhimModel.ToList();
             ViewData["RapPhim_ID"] = new SelectList(_context.Set<RapPhimModel>(), "ID", "ID", phongChieuModel.RapPhim_ID);
             return View(phongChieuModel);
         }
@@ -135,11 +131,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_Phong,Da_xoa,RapPhim_ID")] PhongChieuModel phongChieuModel)
+        public async Task<bool> Edit(int id, [Bind("ID,Ten_Phong,Da_xoa,RapPhim_ID")] PhongChieuModel phongChieuModel)
         {
             if (id != phongChieuModel.ID)
             {
-                return NotFound();
+                return false;
             }
 
             if (ModelState.IsValid)
@@ -149,21 +145,20 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                     _context.Update(phongChieuModel);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException err)
                 {
                     if (!PhongChieuModelExists(phongChieuModel.ID))
                     {
-                        return NotFound();
+                        return false;
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    Console.WriteLine(err);
+                    return false;
                 }
-                return RedirectToAction(nameof(Index));
+
+                return true;
             }
             ViewData["RapPhim_ID"] = new SelectList(_context.Set<RapPhimModel>(), "ID", "ID", phongChieuModel.RapPhim_ID);
-            return View(phongChieuModel);
+            return false;
         }
 
         // POST: Admin/PhongChieu/Delete/5
@@ -197,18 +192,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
 
             return true;
         }
-
-        // POST: Admin/PhongChieu/Delete/5
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-
-        //}
-
-        // GET: Admin/PhongChieu/Restore/5
-        //public async Task<IActionResult> Restore(int? id)
-        //{
-
-        //}
 
         // POST: Admin/PhongChieu/Restore/5
         [HttpPost]

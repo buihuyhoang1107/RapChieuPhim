@@ -191,32 +191,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return true;
         }
 
-        //// POST: Admin/RapPhim/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int? id)
-        //{
-        //    var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
-        //    rapPhimModel.Da_xoa = true;
-        //    _context.RapPhimModel.Update(rapPhimModel);
-
-        //    var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
-        //    foreach (var phong in listPhong)
-        //    {
-        //        phong.Da_xoa = true;
-        //        var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
-        //        foreach (var ghe in listGhe)
-        //        {
-        //            ghe.Da_xoa = true;
-        //        }
-        //        _context.GheModel.UpdateRange(listGhe.ToArray());
-        //    }
-        //    _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        // POST: Admin/RapPhim/Delete/5
+        // POST: Admin/RapPhim/Restore/5
         [HttpPost]
         public async Task<bool> Restore(int? id)
         {
@@ -252,32 +227,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return true;
         }
-
-        //// POST: Admin/RapPhim/Restore/5
-        //[HttpPost, ActionName("Restore")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> RestoreConfirmed(int? id)
-        //{
-        //    var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
-        //    rapPhimModel.Da_xoa = false;
-        //    _context.RapPhimModel.Update(rapPhimModel);
-        //    var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
-        //    foreach (var phong in listPhong)
-        //    {
-        //        phong.Da_xoa = false;
-
-        //        var listGhe = _context.GheModel.Where(ghe => ghe.PhongChieu_ID == phong.ID);
-        //        foreach (var ghe in listGhe)
-        //        {
-        //            ghe.Da_xoa = false;
-        //        }
-        //        _context.GheModel.UpdateRange(listGhe.ToArray());
-
-        //    }
-        //    _context.PhongChieuModel.UpdateRange(listPhong.ToArray());
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
 
         private bool RapPhimModelExists(int id)
         {
