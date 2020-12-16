@@ -1,78 +1,53 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Views\BinhLuan\Create.cshtml" />
-    <None Include="Areas\Admin\Views\BinhLuan\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\BinhLuan\Details.cshtml" />
-    <None Include="Areas\Admin\Views\BinhLuan\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\BinhLuan\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Ghe\Create.cshtml" />
-    <None Include="Areas\Admin\Views\Ghe\Details.cshtml" />
-    <None Include="Areas\Admin\Views\Ghe\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Ghe\Index.cshtml" />
-    <None Include="Areas\Admin\Views\HoaDon\Create.cshtml" />
-    <None Include="Areas\Admin\Views\HoaDon\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\HoaDon\Details.cshtml" />
-    <None Include="Areas\Admin\Views\HoaDon\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\HoaDon\Index.cshtml" />
-    <None Include="Areas\Admin\Views\LichChieu\Create.cshtml" />
-    <None Include="Areas\Admin\Views\LichChieu\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\LichChieu\Details.cshtml" />
-    <None Include="Areas\Admin\Views\LichChieu\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\LichChieu\Index.cshtml" />
-    <None Include="Areas\Admin\Views\NguoiDung\Create.cshtml" />
-    <None Include="Areas\Admin\Views\NguoiDung\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\NguoiDung\Details.cshtml" />
-    <None Include="Areas\Admin\Views\NguoiDung\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\NguoiDung\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Phim\Create.cshtml" />
-    <None Include="Areas\Admin\Views\Phim\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Phim\Details.cshtml" />
-    <None Include="Areas\Admin\Views\Phim\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Phim\Index.cshtml" />
-    <None Include="Areas\Admin\Views\PhongChieu\Create.cshtml" />
-    <None Include="Areas\Admin\Views\PhongChieu\Details.cshtml" />
-    <None Include="Areas\Admin\Views\PhongChieu\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\PhongChieu\Index.cshtml" />
-    <None Include="Areas\Admin\Views\RapPhim\Create.cshtml" />
-    <None Include="Areas\Admin\Views\RapPhim\Details.cshtml" />
-    <None Include="Areas\Admin\Views\RapPhim\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\RapPhim\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Shared\_AdminFooterPartial.cshtml" />
-    <None Include="Areas\Admin\Views\Shared\_AdminHeaderPartial.cshtml" />
-    <None Include="Areas\Admin\Views\Shared\_AdminHeadPartial.cshtml" />
-    <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <None Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
-    <None Include="Areas\Admin\Views\TaiKhoan\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\TaiKhoan\Details.cshtml" />
-    <None Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\TaiKhoan\Index.cshtml" />
-    <None Include="Areas\Admin\Views\VeXemPhim\Create.cshtml" />
-    <None Include="Areas\Admin\Views\VeXemPhim\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\VeXemPhim\Details.cshtml" />
-    <None Include="Areas\Admin\Views\VeXemPhim\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\VeXemPhim\Index.cshtml" />
-    <None Include="Areas\Admin\Views\XuatChieu\Create.cshtml" />
-    <None Include="Areas\Admin\Views\XuatChieu\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\XuatChieu\Details.cshtml" />
-    <None Include="Areas\Admin\Views\XuatChieu\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\XuatChieu\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-    <PackageReference Include="Nancy" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

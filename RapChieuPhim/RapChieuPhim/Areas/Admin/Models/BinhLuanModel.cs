@@ -15,6 +15,7 @@ namespace RapChieuPhim.Areas.Admin.Models
         public int NguoiDung_ID { get; set; }
         public int Phim_ID { get; set; }
         public string Noi_dung { get; set; }
+        public bool Da_xoa { get; set; } // them moi
 
         [ForeignKey("NguoiDung_ID")]
         public virtual NguoiDungModel idNguoiDung { get; set; }

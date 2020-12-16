@@ -55,7 +55,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,HoTe,Email,Dia_chi,Ngay_sinh,Sdt,Admin,Da_xoa")] NguoiDungModel nguoiDungModel)
+        public async Task<IActionResult> Create([Bind("ID,HoTen,Email,Dia_chi,Ngay_sinh,Sdt,Admin,Da_xoa")] NguoiDungModel nguoiDungModel)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,HoTe,Email,Dia_chi,Ngay_sinh,Sdt,Admin,Da_xoa")] NguoiDungModel nguoiDungModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,HoTen,Email,Dia_chi,Ngay_sinh,Sdt,Admin,Da_xoa")] NguoiDungModel nguoiDungModel)
         {
             if (id != nguoiDungModel.ID)
             {

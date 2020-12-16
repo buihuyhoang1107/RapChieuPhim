@@ -10,7 +10,7 @@ namespace RapChieuPhim.Areas.Admin.Models
     public class TaiKhoanModel
     {
         [Key]
-        public string ID { get; set; }
+        public int ID { get; set; } // string -> int
         public string Ten_dang_nhap { get; set; }
         public string Mat_khau { get; set; }
         public string Loai_tai_khoan { get; set; }

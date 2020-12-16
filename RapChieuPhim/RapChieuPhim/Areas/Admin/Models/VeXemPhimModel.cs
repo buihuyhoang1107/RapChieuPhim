@@ -11,14 +11,18 @@ namespace RapChieuPhim.Areas.Admin.Models
     {
         [Key]
         public int ID { get; set; }
-       
-        
+
+
         [DataType(DataType.Time)]
         public DateTime Thoi_gian { get; set; }
 
         public int? Ghe_ID { get; set; }
         [ForeignKey("Ghe_ID")]
         public virtual GheModel idGhe { get; set; }
+
+        public int? PhongChieu_ID { get; set; }
+        [ForeignKey("PhongChieu_ID")]
+        public virtual PhongChieuModel idPhongChieu { get; set; } //Them moi
 
         public int? RapPhim_ID { get; set; }
         [ForeignKey("RapPhim_ID")]

@@ -20,14 +20,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/BinhLuanModels
+        // GET: Admin/BinhLuan
         public async Task<IActionResult> Index()
         {
             var dPContext = _context.BinhLuanModel.Include(b => b.idNguoiDung).Include(b => b.idPhim);
             return View(await dPContext.ToListAsync());
         }
 
-        // GET: Admin/BinhLuanModels/Details/5
+        // GET: Admin/BinhLuan/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,7 +47,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(binhLuanModel);
         }
 
-        // GET: Admin/BinhLuanModels/Create
+        // GET: Admin/BinhLuan/Create
         public IActionResult Create()
         {
             ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
@@ -55,12 +55,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/BinhLuanModels/Create
+        // POST: Admin/BinhLuan/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NguoiDung_ID,Phim_ID,Noi_dung")] BinhLuanModel binhLuanModel)
+        public async Task<IActionResult> Create([Bind("ID,NguoiDung_ID,Phim_ID,Noi_dung,Da_xoa")] BinhLuanModel binhLuanModel)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(binhLuanModel);
         }
 
-        // GET: Admin/BinhLuanModels/Edit/5
+        // GET: Admin/BinhLuan/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,12 +91,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(binhLuanModel);
         }
 
-        // POST: Admin/BinhLuanModels/Edit/5
+        // POST: Admin/BinhLuan/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NguoiDung_ID,Phim_ID,Noi_dung")] BinhLuanModel binhLuanModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,NguoiDung_ID,Phim_ID,Noi_dung,Da_xoa")] BinhLuanModel binhLuanModel)
         {
             if (id != binhLuanModel.ID)
             {
@@ -128,7 +128,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(binhLuanModel);
         }
 
-        // GET: Admin/BinhLuanModels/Delete/5
+        // GET: Admin/BinhLuan/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,7 +148,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(binhLuanModel);
         }
 
-        // POST: Admin/BinhLuanModels/Delete/5
+        // POST: Admin/BinhLuan/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -23,7 +23,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/VeXemPhim
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.VeXemPhimModel.Include(v => v.idGhe).Include(v => v.idHoaDon).Include(v => v.idPhim).Include(v => v.idRapPhim);
+            var dPContext = _context.VeXemPhimModel.Include(v => v.idGhe).Include(v => v.idHoaDon).Include(v => v.idPhim).Include(v => v.idPhongChieu).Include(v => v.idRapPhim);
             return View(await dPContext.ToListAsync());
         }
 
@@ -39,6 +39,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .Include(v => v.idGhe)
                 .Include(v => v.idHoaDon)
                 .Include(v => v.idPhim)
+                .Include(v => v.idPhongChieu)
                 .Include(v => v.idRapPhim)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (veXemPhimModel == null)
@@ -55,6 +56,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             ViewData["Ghe_ID"] = new SelectList(_context.GheModel, "ID", "ID");
             ViewData["HoaDon_ID"] = new SelectList(_context.HoaDonModel, "ID", "ID");
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID");
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID");
             ViewData["RapPhim_ID"] = new SelectList(_context.RapPhimModel, "ID", "ID");
             return View();
         }
@@ -64,7 +66,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RapPhim_ID,Phim_ID,Thoi_gian,Ghe_ID,DaXoa,HoaDon_ID")] VeXemPhimModel veXemPhimModel)
+        public async Task<IActionResult> Create([Bind("ID,Thoi_gian,Ghe_ID,PhongChieu_ID,RapPhim_ID,Phim_ID,HoaDon_ID,DaXoa")] VeXemPhimModel veXemPhimModel)
         {
             if (ModelState.IsValid)
             {
@@ -75,6 +77,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             ViewData["Ghe_ID"] = new SelectList(_context.GheModel, "ID", "ID", veXemPhimModel.Ghe_ID);
             ViewData["HoaDon_ID"] = new SelectList(_context.HoaDonModel, "ID", "ID", veXemPhimModel.HoaDon_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", veXemPhimModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", veXemPhimModel.PhongChieu_ID);
             ViewData["RapPhim_ID"] = new SelectList(_context.RapPhimModel, "ID", "ID", veXemPhimModel.RapPhim_ID);
             return View(veXemPhimModel);
         }
@@ -95,6 +98,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             ViewData["Ghe_ID"] = new SelectList(_context.GheModel, "ID", "ID", veXemPhimModel.Ghe_ID);
             ViewData["HoaDon_ID"] = new SelectList(_context.HoaDonModel, "ID", "ID", veXemPhimModel.HoaDon_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", veXemPhimModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", veXemPhimModel.PhongChieu_ID);
             ViewData["RapPhim_ID"] = new SelectList(_context.RapPhimModel, "ID", "ID", veXemPhimModel.RapPhim_ID);
             return View(veXemPhimModel);
         }
@@ -104,7 +108,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,RapPhim_ID,Phim_ID,Thoi_gian,Ghe_ID,DaXoa,HoaDon_ID")] VeXemPhimModel veXemPhimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Thoi_gian,Ghe_ID,PhongChieu_ID,RapPhim_ID,Phim_ID,HoaDon_ID,DaXoa")] VeXemPhimModel veXemPhimModel)
         {
             if (id != veXemPhimModel.ID)
             {
@@ -134,6 +138,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             ViewData["Ghe_ID"] = new SelectList(_context.GheModel, "ID", "ID", veXemPhimModel.Ghe_ID);
             ViewData["HoaDon_ID"] = new SelectList(_context.HoaDonModel, "ID", "ID", veXemPhimModel.HoaDon_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", veXemPhimModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", veXemPhimModel.PhongChieu_ID);
             ViewData["RapPhim_ID"] = new SelectList(_context.RapPhimModel, "ID", "ID", veXemPhimModel.RapPhim_ID);
             return View(veXemPhimModel);
         }
@@ -150,6 +155,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 .Include(v => v.idGhe)
                 .Include(v => v.idHoaDon)
                 .Include(v => v.idPhim)
+                .Include(v => v.idPhongChieu)
                 .Include(v => v.idRapPhim)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (veXemPhimModel == null)

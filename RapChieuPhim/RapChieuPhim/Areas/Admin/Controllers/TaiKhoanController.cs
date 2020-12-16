@@ -28,7 +28,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/TaiKhoan/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -49,7 +49,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan/Create
         public IActionResult Create()
         {
-            ViewData["NguoiDung_ID"] = new SelectList(_context.Set<NguoiDungModel>(), "ID", "ID");
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
             return View();
         }
 
@@ -66,12 +66,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NguoiDung_ID"] = new SelectList(_context.Set<NguoiDungModel>(), "ID", "ID", taiKhoanModel.NguoiDung_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", taiKhoanModel.NguoiDung_ID);
             return View(taiKhoanModel);
         }
 
         // GET: Admin/TaiKhoan/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -83,7 +83,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["NguoiDung_ID"] = new SelectList(_context.Set<NguoiDungModel>(), "ID", "ID", taiKhoanModel.NguoiDung_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", taiKhoanModel.NguoiDung_ID);
             return View(taiKhoanModel);
         }
 
@@ -92,7 +92,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,Ten_dang_nhap,Mat_khau,Loai_tai_khoan,NguoiDung_ID,Da_xoa")] TaiKhoanModel taiKhoanModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_dang_nhap,Mat_khau,Loai_tai_khoan,NguoiDung_ID,Da_xoa")] TaiKhoanModel taiKhoanModel)
         {
             if (id != taiKhoanModel.ID)
             {
@@ -119,12 +119,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NguoiDung_ID"] = new SelectList(_context.Set<NguoiDungModel>(), "ID", "ID", taiKhoanModel.NguoiDung_ID);
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", taiKhoanModel.NguoiDung_ID);
             return View(taiKhoanModel);
         }
 
         // GET: Admin/TaiKhoan/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // POST: Admin/TaiKhoan/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var taiKhoanModel = await _context.TaiKhoanModel.FindAsync(id);
             _context.TaiKhoanModel.Remove(taiKhoanModel);
@@ -153,7 +153,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TaiKhoanModelExists(string id)
+        private bool TaiKhoanModelExists(int id)
         {
             return _context.TaiKhoanModel.Any(e => e.ID == id);
         }

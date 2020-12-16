@@ -10,7 +10,7 @@ namespace RapChieuPhim.Areas.Admin.Models
     {
         [Key]
         public int ID { get; set; }
-        public string HoTe { get; set; }
+        public string HoTen { get; set; } //HoTe -> HoTen
 
         public string Email { get; set; }
         public string Dia_chi { get; set; }

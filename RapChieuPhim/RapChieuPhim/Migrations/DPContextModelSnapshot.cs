@@ -15,16 +15,19 @@ namespace RapChieuPhim.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.BinhLuanModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Da_xoa")
+                        .HasColumnType("bit");
 
                     b.Property<int>("NguoiDung_ID")
                         .HasColumnType("int");
@@ -49,7 +52,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_chon")
                         .HasColumnType("bit");
@@ -78,7 +81,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -104,7 +107,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -127,7 +130,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Admin")
                         .HasColumnType("bit");
@@ -141,7 +144,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HoTe")
+                    b.Property<string>("HoTen")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Ngay_sinh")
@@ -160,7 +163,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Da_xoa")
                         .HasColumnType("int");
@@ -183,6 +186,9 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("Thoi_luong")
                         .HasColumnType("int");
 
+                    b.Property<string>("Video")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("PhimModel");
@@ -193,7 +199,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -216,7 +222,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -234,8 +240,10 @@ namespace RapChieuPhim.Migrations
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.TaiKhoanModel", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -264,7 +272,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("DaXoa")
                         .HasColumnType("bit");
@@ -276,6 +284,9 @@ namespace RapChieuPhim.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Phim_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PhongChieu_ID")
                         .HasColumnType("int");
 
                     b.Property<int?>("RapPhim_ID")
@@ -292,6 +303,8 @@ namespace RapChieuPhim.Migrations
 
                     b.HasIndex("Phim_ID");
 
+                    b.HasIndex("PhongChieu_ID");
+
                     b.HasIndex("RapPhim_ID");
 
                     b.ToTable("VeXemPhimModel");
@@ -302,7 +315,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
@@ -338,10 +351,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("Phim_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idNguoiDung");
-
-                    b.Navigation("idPhim");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.GheModel", b =>
@@ -351,8 +360,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("PhongChieu_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idPhongChieu");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.HoaDonModel", b =>
@@ -362,8 +369,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("NguoiDung_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idNguoiDung");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.LichChieuModel", b =>
@@ -373,8 +378,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("RapPhim_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idRapPhim");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.PhongChieuModel", b =>
@@ -384,8 +387,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("RapPhim_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idRapPhim");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.TaiKhoanModel", b =>
@@ -395,8 +396,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("NguoiDung_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("NguoiDungModel");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.VeXemPhimModel", b =>
@@ -413,17 +412,13 @@ namespace RapChieuPhim.Migrations
                         .WithMany("lstVeXemPhim")
                         .HasForeignKey("Phim_ID");
 
+                    b.HasOne("RapChieuPhim.Areas.Admin.Models.PhongChieuModel", "idPhongChieu")
+                        .WithMany()
+                        .HasForeignKey("PhongChieu_ID");
+
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.RapPhimModel", "idRapPhim")
                         .WithMany("lstVeXemPhim")
                         .HasForeignKey("RapPhim_ID");
-
-                    b.Navigation("idGhe");
-
-                    b.Navigation("idHoaDon");
-
-                    b.Navigation("idPhim");
-
-                    b.Navigation("idRapPhim");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.XuatChieuModel", b =>
@@ -439,57 +434,6 @@ namespace RapChieuPhim.Migrations
                         .HasForeignKey("Phim_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("idLichChieu");
-
-                    b.Navigation("idPhim");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.GheModel", b =>
-                {
-                    b.Navigation("lstVeXemPhim");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.HoaDonModel", b =>
-                {
-                    b.Navigation("lstVeXemPhim");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.LichChieuModel", b =>
-                {
-                    b.Navigation("lstXuatChieu");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.NguoiDungModel", b =>
-                {
-                    b.Navigation("lstBinhLuan");
-
-                    b.Navigation("lstHoaDon");
-
-                    b.Navigation("lstTaiKhoan");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.PhimModel", b =>
-                {
-                    b.Navigation("lstBinhLuan");
-
-                    b.Navigation("lstVeXemPhim");
-
-                    b.Navigation("lstXuatChieu");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.PhongChieuModel", b =>
-                {
-                    b.Navigation("lstGhe");
-                });
-
-            modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.RapPhimModel", b =>
-                {
-                    b.Navigation("lstLichChieu");
-
-                    b.Navigation("lstPhongChieu");
-
-                    b.Navigation("lstVeXemPhim");
                 });
 #pragma warning restore 612, 618
         }

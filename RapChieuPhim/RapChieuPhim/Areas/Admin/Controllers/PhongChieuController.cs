@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Nancy.Json;
 using RapChieuPhim.Areas.Admin.Data;
 using RapChieuPhim.Areas.Admin.Models;
 using Newtonsoft.Json.Linq;
