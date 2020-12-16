@@ -20,20 +20,15 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/LichChieu
-        //public async Task<IActionResult> Index()
-        //{
-        //    var dPContext = _context.LichChieuModel.Include(l => l.idRapPhim);
-        //    return View(await dPContext.ToListAsync());
-        //} 
         public async Task<IActionResult> Index(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var dPContext = _context.LichChieuModel.Where(p => p.RapPhim_ID == id).ToListAsync();
+            var dPContext = _context.LichChieuModel
+                .Include(lc => lc.idRapPhim)
+                .Where(p => p.RapPhim_ID == id).ToListAsync();
             return View(await dPContext);
         }
 
