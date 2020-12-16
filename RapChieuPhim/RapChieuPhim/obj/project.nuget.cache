@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2E0Nfu6WtBZiste2YPVEuZeC8rhloHFGqG9kbn7S/MXNZxdWgGrVJtds4cZsa+33d2reUrkc3S9xAkHSgNvWqA==",
+  "dgSpecHash": "q50rlHBAf12ZXh2I00W2A/U5jG97K3Q21vo23AGk0fAM/jpcv4zaPkQ6pGCsqtmpu3SPYhAFHQIjvG14S6Sbdg==",
   "success": true,
-  "projectFilePath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+  "projectFilePath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KucKung\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\KucKung\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
