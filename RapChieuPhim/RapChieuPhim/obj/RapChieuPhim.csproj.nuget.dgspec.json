@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Desktop\\doan_asp\\Liemv2\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
+    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
   },
   "projects": {
-    "D:\\Desktop\\doan_asp\\Liemv2\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
+    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Desktop\\doan_asp\\Liemv2\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectUniqueName": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "projectName": "RapChieuPhim",
-        "projectPath": "D:\\Desktop\\doan_asp\\Liemv2\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
-        "outputPath": "D:\\Desktop\\doan_asp\\Liemv2\\RapChieuPhim\\RapChieuPhim\\obj\\",
+        "outputPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",

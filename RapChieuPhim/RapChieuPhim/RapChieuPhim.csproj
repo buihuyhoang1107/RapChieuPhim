@@ -5,11 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Views\ContactPage\Index.cshtml" />
+    <None Include="Views\ErrorPage\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\ReviewsPage\Index.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_CssPartial.cshtml" />
+    <None Include="Views\Shared\_FooterPartial.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_MenuPartial.cshtml" />
+    <None Include="Views\Shared\_TaiKhoanFoodPartial.cshtml" />
+    <None Include="Views\Shared\_TaiKhoanHeadPartial.cshtml" />
+    <None Include="Views\Shared\_TopHeaderPartial.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\SinglePage\Index.cshtml" />
+    <None Include="Views\TaiKhoan\Error.cshtml" />
+    <None Include="Views\TaiKhoan\Index.cshtml" />
+    <None Include="Views\TaiKhoan\Success.cshtml" />
+    <None Include="Views\VideosPage\Index.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\js\site.js" />
