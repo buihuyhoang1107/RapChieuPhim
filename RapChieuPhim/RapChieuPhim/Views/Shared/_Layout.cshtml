@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    @await Html.PartialAsync("~/Views/Shared/_TaiKhoanHeadPartial.cshtml")
-    @RenderSection("css", required: false)
+    
     @await Html.PartialAsync("_CssPartial.cshtml")
     @RenderSection("css", required: false)
 </head>
@@ -13,8 +12,7 @@
         @RenderBody()
 
     </div>
-    @await Html.PartialAsync("~/Views/Shared/_TaiKhoanFoodPartial.cshtml")
-    @RenderSection("Scripts", required: false)
+
 
 </body>
 </html>

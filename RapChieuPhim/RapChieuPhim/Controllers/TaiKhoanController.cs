@@ -5,52 +5,38 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using RapChieuPhim.Areas.Admin.Models;
+using RapChieuPhim.Areas.Admin.Data;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace RapChieuPhim.Controllers
 {
     public class TaiKhoanController : Controller
     {
-        SqlConnection con = new SqlConnection();
-        SqlCommand com = new SqlCommand();
-        SqlDataReader dr;
-        [HttpGet]
-        public IActionResult Index()
+        private readonly DPContext _context;
+
+        public TaiKhoanController(DPContext context)
         {
+            _context = context;
+        }
+        public IActionResult Index() {
             return View();
         }
-        void connectionString()
-        {
-            con.ConnectionString = @"Data Source=THANHSON\SQLEXPRESS;Initial Catalog=db_RCP;Integrated Security=True";
-        }
-        [HttpPost]
-        public IActionResult Verify(TaiKhoanModel tai_khoan)
-        {
-            try
-            {
-                connectionString();
-                con.Open();
-                com.Connection = con;
-                com.CommandText = "SELECT * FROM TaiKhoanModel WHERE Ten_dang_nhap=@ten_dang_nhap and Mat_khau=@mat_khau";
-                com.Parameters.AddWithValue("@ten_dang_nhap", tai_khoan.Ten_dang_nhap);
-                com.Parameters.AddWithValue("@mat_khau", tai_khoan.Mat_khau);
-                dr = com.ExecuteReader();
-                if (dr.Read())
-                {
-                    con.Close();
-                    return View("Success");
-                }
-                else
-                {
-                    con.Close();
-                    return View("Error");
-                }
+        public IActionResult Login([Bind("Ten_dang_nhap", "Mat_khau")] TaiKhoanModel taikhoan) {
+            var r = _context.TaiKhoanModel.Where(m => (m.Ten_dang_nhap == taikhoan.Ten_dang_nhap && m.Mat_khau == StringProcessing.CreateMD5Hash(taikhoan.Mat_khau))).ToList();
+            if (r.Count == 0) {
+                return View("Error");
+            }
+            var str = JsonConvert.SerializeObject(taikhoan);
+            HttpContext.Session.SetString("user", str);
+            if (r[0].Loai_tai_khoan == "Quanly") {
 
+                var url = Url.RouteUrl("areas", new { Controller = "Home", action = "Index", area = "admin" });
+                return Redirect(url);
             }
-            catch (Exception err)
-            {
-                throw err;
-            }
+            return RedirectToAction("Index", "Home");
         }
+
 
 
     }
