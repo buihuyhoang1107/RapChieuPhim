@@ -55,7 +55,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Ten_phim,Hinh_anh,Video,Thoi_luong,Luot_xem,Gia_ve,Lich_Chieu,Da_xoa")] PhimModel phimModel)
+        public async Task<IActionResult> Create([Bind("ID,Ten_phim,Hinh_anh,Video,Thoi_luong,Luot_xem,Gia_ve,Da_xoa")] PhimModel phimModel)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_phim,Hinh_anh,Video,Thoi_luong,Luot_xem,Gia_ve,Lich_Chieu,Da_xoa")] PhimModel phimModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_phim,Hinh_anh,Video,Thoi_luong,Luot_xem,Gia_ve,Da_xoa")] PhimModel phimModel)
         {
             if (id != phimModel.ID)
             {

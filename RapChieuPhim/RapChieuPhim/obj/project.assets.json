@@ -8820,19 +8820,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kimhu\\.nuget\\packages\\": {}
+    "C:\\Users\\KucKung\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HK5\\ASP.Net\\DoAn\\New folder (2)\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "projectUniqueName": "d:\\Desktop\\Hoang\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
       "projectName": "RapChieuPhim",
-      "projectPath": "D:\\HK5\\ASP.Net\\DoAn\\New folder (2)\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
-      "packagesPath": "C:\\Users\\kimhu\\.nuget\\packages\\",
-      "outputPath": "D:\\HK5\\ASP.Net\\DoAn\\New folder (2)\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
+      "projectPath": "d:\\Desktop\\Hoang\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
+      "outputPath": "d:\\Desktop\\Hoang\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kimhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8844,6 +8844,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -8855,6 +8856,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -8893,7 +8895,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

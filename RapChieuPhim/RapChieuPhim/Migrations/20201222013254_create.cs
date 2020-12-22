@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RapChieuPhim.Migrations
 {
-    public partial class create_db : Migration
+    public partial class create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,10 +36,9 @@ namespace RapChieuPhim.Migrations
                     Hinh_anh = table.Column<string>(nullable: true),
                     Video = table.Column<string>(nullable: true),
                     Thoi_luong = table.Column<int>(nullable: false),
-                    Luot_xem = table.Column<string>(nullable: true),
-                    Gia_ve = table.Column<string>(nullable: true),
-                    Lich_Chieu = table.Column<string>(nullable: true),
-                    Da_xoa = table.Column<int>(nullable: false)
+                    Luot_xem = table.Column<int>(nullable: false),
+                    Gia_ve = table.Column<int>(nullable: false),
+                    Da_xoa = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

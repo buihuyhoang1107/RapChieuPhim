@@ -15,10 +15,10 @@ namespace RapChieuPhim.Areas.Admin.Models
         public string Hinh_anh { get; set; }
         public string Video { get; set; } //them moi
         public int Thoi_luong { get; set; }
-        public string Luot_xem { get; set; }
-        public string Gia_ve { get; set; }
-        public string Lich_Chieu { get; set; }
-        public int Da_xoa { get; set; }
+        public int Luot_xem { get; set; } // string -> int
+        public int Gia_ve { get; set; }// string -> int
+        //public string Lich_Chieu { get; set; }
+        public bool Da_xoa { get; set; } //int -> bool
 
         public ICollection<XuatChieuModel> lstXuatChieu { get; set; }
         public ICollection<VeXemPhimModel> lstVeXemPhim { get; set; }

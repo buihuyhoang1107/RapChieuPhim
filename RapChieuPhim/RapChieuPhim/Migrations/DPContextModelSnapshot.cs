@@ -165,20 +165,17 @@ namespace RapChieuPhim.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Da_xoa")
-                        .HasColumnType("int");
+                    b.Property<bool>("Da_xoa")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Gia_ve")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gia_ve")
+                        .HasColumnType("int");
 
                     b.Property<string>("Hinh_anh")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Lich_Chieu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Luot_xem")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Luot_xem")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ten_phim")
                         .HasColumnType("nvarchar(max)");

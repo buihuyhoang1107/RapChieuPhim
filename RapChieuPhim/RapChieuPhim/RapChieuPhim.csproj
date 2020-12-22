@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\Phim\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Phim\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Phim\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Phim\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Phim\Index.cshtml" />
     <None Include="Views\ContactPage\Index.cshtml" />
     <None Include="Views\ErrorPage\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
