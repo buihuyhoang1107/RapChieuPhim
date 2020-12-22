@@ -50,7 +50,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
-            return View();
+            TaiKhoanModel taiKhoan = new TaiKhoanModel();
+            return PartialView("_TaiKhoanModelPartial", taiKhoan);
         }
 
         // POST: Admin/TaiKhoan/Create
