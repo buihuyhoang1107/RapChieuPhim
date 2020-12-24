@@ -6,7 +6,7 @@
 
 <div id="HienThiModalND"></div>
 
-<h1>Tài khoản</h1>
+<h1>Người dùng</h1>
 <br />
 
 <button type="button" class="btn btn-primary" data-toggle="ajax-modal-nd" data-target="#addTaiKhoan"
@@ -14,10 +14,7 @@
     Thêm Người dùng
 </button>
 <br />
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -41,11 +38,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Da_xoa)
-            </th>
-            <th>
-                <a onclick="showModalAcount('@Url.Action("Create","TaiKhoan",null,Context.Request.Scheme)','Thêm tài khoản')" class="btn btn-success text-white">
-                    Thêm tài khoản
-                </a>
             </th>
         </tr>
     </thead>
@@ -75,6 +67,10 @@
                     @Html.DisplayFor(modelItem => item.Da_xoa)
                 </td>
                 <td>
+                    @*<button type="button" class="btn btn-primary" data-toggle="ajax-modal-nd" data-target="#addTaiKhoan"
+                            data-url="@Url.Action($"Create/{item.ID}")">
+                        Chỉnh sửa
+                    </button>*@
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>

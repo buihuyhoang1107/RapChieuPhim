@@ -82,6 +82,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
             return View(nguoiDungModel);
+            //var nguoidung = _context.NguoiDungModel.Where(x => x.ID == id).FirstOrDefault();
+            //return PartialView("Edit", nguoidung);
         }
 
         // POST: Admin/NguoiDung/Edit/5
