@@ -1,0 +1,70 @@
+﻿@model NguoiDungModel
+
+<div class="modal fade" id="addNguoiDung">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addNguoiDunglabel"> Thêm người dùng</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="HoTen" class="control-label"></label>
+                        <input asp-for="HoTen" class="form-control" />
+                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Dia_chi" class="control-label"></label>
+                        <input asp-for="Dia_chi" class="form-control" />
+                        <span asp-validation-for="Dia_chi" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ngay_sinh" class="control-label"></label>
+                        <input asp-for="Ngay_sinh" class="form-control" />
+                        <span asp-validation-for="Ngay_sinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sdt" class="control-label"></label>
+                        <input asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Admin" /> @Html.DisplayNameFor(model => model.Admin)
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Da_xoa" /> @Html.DisplayNameFor(model => model.Da_xoa)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                <button type="button" class="btn btn-primary" data-save="modal">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

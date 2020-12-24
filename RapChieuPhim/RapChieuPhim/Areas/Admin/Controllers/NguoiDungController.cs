@@ -45,9 +45,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDung/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            NguoiDungModel nguoiDung = new NguoiDungModel();
+            return PartialView("_NguoiDungModelPartial", nguoiDung);
         }
 
         // POST: Admin/NguoiDung/Create

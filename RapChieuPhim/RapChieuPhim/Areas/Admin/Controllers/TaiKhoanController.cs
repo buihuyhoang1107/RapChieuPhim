@@ -47,12 +47,14 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/TaiKhoan/Create
+        [HttpGet]
         public IActionResult Create()
         {
             ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
             TaiKhoanModel taiKhoan = new TaiKhoanModel();
-            return PartialView("Create", taiKhoan);
+            return PartialView("_TaiKhoanModelPartial", taiKhoan);
         }
+
 
         // POST: Admin/TaiKhoan/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

@@ -3,27 +3,14 @@
 
 // Write your JavaScript code.
 
-//OnClick hiện modal truyền vào đường dẫn và tiêu đề chức năng
-showModalAcount = (url, title) => {
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function (res) {
-            //hiện form create edit
-            $('#form-modal .modal-body').html(res);
-            //hiện tiêu đề
-            $('#form-modal .modal-title').html(title);
-            //hiện modal
-            $('#form-modal').modal('show');
-        }
-    })
-};
 
 //Them tài khoản
 $(function () {
     var PlaceHolderElement = $('#PlaceHolderHere');
-    $('button[data-toggle="ajax-modal"]').click(function (event) {
+    var HienThiModalNDElement = $('#HienThiModalND');
+    
 
+    $('button[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);
@@ -31,11 +18,22 @@ $(function () {
         })
     })
 
+    $('button[data-toggle="ajax-modal-nd"]').click(function (event) {
+        console.log("aaaa");
+        var url = $(this).data('url');
+        $.get(url).done(function (data) {
+            HienThiModalNDElement.html(data);
+            HienThiModalNDElement.find('.modal').modal('show');
+        })
+    })
+
     PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
         var sendData = form.serialize();
-        $.post(actionUrl, sendData).done(function (data) {
+        console.log(sendData);
+        console.log(actionUrl);
+        $.post('TaiKhoan/' + actionUrl, sendData).done(function (data) {
             PlaceHolderElement.find('.modal').modal('hide');
         })
     })

@@ -1,60 +1,55 @@
 ﻿@model TaiKhoanModel
-<div class="row">
-    <div class="col"></div>
-    <div class="col">
 
-        <div class="modal fade" id="addTaiKhoan">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="addTaiKhoanLabel"> Thêm tài khoản</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>x</span>
-                        </button>
+<div class="modal fade" id="addTaiKhoan">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addTaiKhoanLabel"> Thêm tài khoản</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Ten_dang_nhap" class="control-label"></label>
+                        <input asp-for="Ten_dang_nhap" class="form-control" />
+                        <span asp-validation-for="Ten_dang_nhap" class="text-danger"></span>
                     </div>
-                    <div class="modal-body">
-                        <form action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <label asp-for="Ten_dang_nhap" class="control-label"></label>
-                                <input asp-for="Ten_dang_nhap" class="form-control" />
-                                <span asp-validation-for="Ten_dang_nhap" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Mat_khau" class="control-label"></label>
-                                <input asp-for="Mat_khau" class="form-control" />
-                                <span asp-validation-for="Mat_khau" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Loai_tai_khoan" class="control-label"></label>
-                                <input asp-for="Loai_tai_khoan" class="form-control" />
-                                <span asp-validation-for="Loai_tai_khoan" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="NguoiDung_ID" class="control-label"></label>
-                                <select asp-for="NguoiDung_ID" class="form-control" asp-items="ViewBag.NguoiDung_ID"></select>
-                            </div>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="Da_xoa" /> @Html.DisplayNameFor(model => model.Da_xoa)
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label asp-for="Mat_khau" class="control-label"></label>
+                        <input asp-for="Mat_khau" class="form-control" />
+                        <span asp-validation-for="Mat_khau" class="text-danger"></span>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-
-                        <button type="button" class="btn btn-primary" data-save="modal">Lưu</button>
+                    <div class="form-group">
+                        <label asp-for="Loai_tai_khoan" class="control-label"></label>
+                        <input asp-for="Loai_tai_khoan" class="form-control" />
+                        <span asp-validation-for="Loai_tai_khoan" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="NguoiDung_ID" class="control-label"></label>
+                        <select asp-for="NguoiDung_ID" class="form-control" asp-items="ViewBag.NguoiDung_ID"></select>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Da_xoa" /> @Html.DisplayNameFor(model => model.Da_xoa)
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                <button type="button" class="btn btn-primary" data-save="modal">Lưu</button>
             </div>
         </div>
     </div>
-    <div class="col"></div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

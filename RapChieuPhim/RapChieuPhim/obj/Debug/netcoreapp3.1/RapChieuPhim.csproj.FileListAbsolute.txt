@@ -1459,3 +1459,4 @@ C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcorea
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\staticwebassets\RapChieuPhim.StaticWebAssets.Manifest.cache
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\staticwebassets\RapChieuPhim.StaticWebAssets.xml
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.genruntimeconfig.cache
+C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\NguoiDung\_NguoiDungModelPartial.cshtml.g.cs
