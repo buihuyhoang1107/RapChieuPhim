@@ -32,7 +32,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.NguoiDungModel)
             </th>
-            <th></th>
+            <th>
+                <a onclick="showModalAcount('@Url.Action("Create","TaiKhoan",null,Context.Request.Scheme)','Thêm tài khoản')" class="btn btn-success text-white">
+                    Thêm tài khoản
+                </a>
+            </th>
         </tr>
     </thead>
     <tbody>

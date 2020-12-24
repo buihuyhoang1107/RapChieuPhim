@@ -3,6 +3,21 @@
 
 // Write your JavaScript code.
 
+//OnClick hiện modal truyền vào đường dẫn và tiêu đề chức năng
+showModalAcount = (url, title) => {
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            //hiện form create edit
+            $('#form-modal .modal-body').html(res);
+            //hiện tiêu đề
+            $('#form-modal .modal-title').html(title);
+            //hiện modal
+            $('#form-modal').modal('show');
+        }
+    })
+};
 
 //Them tài khoản
 $(function () {
