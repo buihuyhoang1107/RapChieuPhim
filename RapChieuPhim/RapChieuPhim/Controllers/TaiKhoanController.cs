@@ -29,7 +29,7 @@ namespace RapChieuPhim.Controllers
             }
             var str = JsonConvert.SerializeObject(taikhoan);
             HttpContext.Session.SetString("user", str);
-            if (r[0].Loai_tai_khoan == "Quanly") {
+            if (r[0].Loai_tai_khoan == 0) {
 
                 var url = Url.RouteUrl("areas", new { Controller = "Home", action = "Index", area = "admin" });
                 return Redirect(url);

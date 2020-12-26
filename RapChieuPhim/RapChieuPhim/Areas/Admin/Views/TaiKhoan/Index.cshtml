@@ -4,16 +4,17 @@
     ViewData["Title"] = "Index";
 }
 <div id="PlaceHolderHere"></div>
+<h1>Tài khoản</h1>
+<br />
 
 <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addTaiKhoan"
         data-url="@Url.Action("Create")">
     Thêm tài khoản
 </button>
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<br />
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
 <table class="table">
     <thead>
         <tr>
@@ -32,7 +33,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.NguoiDungModel)
             </th>
-            <th></th>
+            @*<th>
+                    <a onclick="showModalAcount('@Url.Action("Create","TaiKhoan",null,Context.Request.Scheme)','Thêm tài khoản')" class="btn btn-success text-white">
+                        Thêm tài khoản
+                    </a>
+                </th>*@
+            <th>
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -69,4 +77,4 @@
     <script src="~/js/site.js"></script>
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
