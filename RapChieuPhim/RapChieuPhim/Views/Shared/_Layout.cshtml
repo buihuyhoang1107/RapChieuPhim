@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     @await Html.PartialAsync("_CssPartial.cshtml")
     @RenderSection("css", required: false)
 </head>
@@ -13,6 +13,6 @@
 
     </div>
 
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

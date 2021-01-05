@@ -117,33 +117,56 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             return View(phimModel);
         }
 
-        // GET: Admin/Phim/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        //// GET: Admin/Phim/Delete/5
+        //public async Task<ActionResult<bool>> Delete(int? id)
+        //{
+
+
+        //    return await DeleteConfirmed((int)id);
+        //}
+
+        // POST: Admin/Phim/Delete/5
+        [HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult<bool>> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var phimModel = await _context.PhimModel
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (phimModel == null)
             {
-                return NotFound();
+                return false;
             }
-
-            return View(phimModel);
+            phimModel = await _context.PhimModel.FindAsync(id);
+            phimModel.Da_xoa = true;
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         // POST: Admin/Phim/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost, ActionName("Restore")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult<bool>> Restore(int? id)
         {
-            var phimModel = await _context.PhimModel.FindAsync(id);
-            _context.PhimModel.Remove(phimModel);
+            if (id == null)
+            {
+                return false;
+            }
+
+            var phimModel = await _context.PhimModel
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (phimModel == null)
+            {
+                return false;
+            }
+            phimModel = await _context.PhimModel.FindAsync(id);
+            phimModel.Da_xoa = false;
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return true;
         }
 
         private bool PhimModelExists(int id)

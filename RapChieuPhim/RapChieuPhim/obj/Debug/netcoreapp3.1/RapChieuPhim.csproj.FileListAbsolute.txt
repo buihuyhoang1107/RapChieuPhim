@@ -1215,3 +1215,4 @@ d:\Desktop\Hoang\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\
 d:\Desktop\Hoang\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.dll
 d:\Desktop\Hoang\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.pdb
 d:\Desktop\Hoang\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.genruntimeconfig.cache
+d:\Desktop\doan_asp\Liem\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TaiKhoan\_TaiKhoanModelPartial.cshtml.g.cs
