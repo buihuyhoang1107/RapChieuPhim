@@ -45,9 +45,11 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDung/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            NguoiDungModel nguoiDung = new NguoiDungModel();
+            return PartialView("_NguoiDungModelPartial", nguoiDung);
         }
 
         // POST: Admin/NguoiDung/Create
@@ -80,6 +82,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
                 return NotFound();
             }
             return View(nguoiDungModel);
+            //var nguoidung = _context.NguoiDungModel.Where(x => x.ID == id).FirstOrDefault();
+            //return PartialView("Edit", nguoidung);
         }
 
         // POST: Admin/NguoiDung/Edit/5

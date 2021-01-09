@@ -13,7 +13,7 @@ namespace RapChieuPhim.Areas.Admin.Models
         public int ID { get; set; } // string -> int
         public string Ten_dang_nhap { get; set; }
         public string Mat_khau { get; set; }
-        public string Loai_tai_khoan { get; set; }
+        public int Loai_tai_khoan { get; set; }// string -> int
         public int NguoiDung_ID { get; set; }
         public bool Da_xoa { get; set; }
 
