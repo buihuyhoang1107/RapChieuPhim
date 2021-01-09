@@ -22,13 +22,36 @@ namespace RapChieuPhim.Areas.API.Controllers
         }
 
         // GET: api/Phim
+        [HttpGet("size")]
+        public async Task<int> GetSize()
+        {
+            return _context.PhimModel.Where(p => p.Da_xoa == false).ToList().Count;
+        }
+
+        // GET: api/Phim/a/b - a: index, b: range
+        [HttpGet("page/{start}")]
+        public async Task<ActionResult<IEnumerable<PhimModel>>> GetRange(int? start)
+        {
+            if (start == null || start <= 1) start = 0;
+            else start -= 1;
+            start = start * 16;
+            List<PhimModel> data = _context.PhimModel.Where(p => p.Da_xoa == false).ToList();
+            int end = 16;
+            if (start + 16 > data.Count)
+            {
+                end = data.Count - (int)start ;
+            }
+            return data = data.GetRange((int)start, end);
+        }
+
+        // GET: api/Phim
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PhimModel>>> GetPhimModel()
         {
-            return await _context.PhimModel.ToListAsync();
+            return await _context.PhimModel.Where(p => p.Da_xoa == false).ToListAsync();
         }
 
-        // GET: api/Phim/5
+        // GET: api/Phim
         [HttpGet("{id}")]
         public async Task<ActionResult<PhimModel>> GetPhimModel(int id)
         {
