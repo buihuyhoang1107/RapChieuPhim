@@ -39,9 +39,13 @@ namespace RapChieuPhim.Areas.API.Controllers
             int end = 16;
             if (start + 16 > data.Count)
             {
-                end = data.Count - (int)start ;
+                end = data.Count - (int)start;
             }
-            return data = data.GetRange((int)start, end);
+            data = data.GetRange((int)start, end);
+            if (data.Count() == 0)
+                return NotFound();
+
+            return data;
         }
 
         // GET: api/Phim
@@ -56,7 +60,8 @@ namespace RapChieuPhim.Areas.API.Controllers
         public async Task<ActionResult<PhimModel>> GetPhimModel(int id)
         {
             var phimModel = await _context.PhimModel.FindAsync(id);
-
+            phimModel.Luot_xem += 1;
+            _context.SaveChangesAsync();
             if (phimModel == null)
             {
                 return NotFound();
@@ -65,64 +70,18 @@ namespace RapChieuPhim.Areas.API.Controllers
             return phimModel;
         }
 
-        // PUT: api/Phim/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPhimModel(int id, PhimModel phimModel)
-        {
-            if (id != phimModel.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(phimModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PhimModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Phim
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<PhimModel>> PostPhimModel(PhimModel phimModel)
-        {
-            _context.PhimModel.Add(phimModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPhimModel", new { id = phimModel.ID }, phimModel);
-        }
-
-        // DELETE: api/Phim/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<PhimModel>> DeletePhimModel(int id)
+        [HttpGet("View/{id}")]
+        public async Task<ActionResult<int>> increaseView(int id)
         {
             var phimModel = await _context.PhimModel.FindAsync(id);
+            phimModel.Luot_xem += 1;
+            _context.SaveChangesAsync();
             if (phimModel == null)
             {
                 return NotFound();
             }
 
-            _context.PhimModel.Remove(phimModel);
-            await _context.SaveChangesAsync();
-
-            return phimModel;
+            return phimModel.Luot_xem;
         }
 
         private bool PhimModelExists(int id)
