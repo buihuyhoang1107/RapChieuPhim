@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -8,14 +7,14 @@
     <div class="single-content">
         @await Html.PartialAsync("../Shared/_TopHeaderPartial.cshtml")
         <div class="reviews-section">
-            <h3 class="head">Movie Reviews</h3>
+            <h3 class="head">@ViewBag.Phim.Ten_phim Reviews</h3>
             <div class="col-md-9 reviews-grids">
                 <div class="review">
                     <div class="movie-pic">
-                        <a href="SinglePage"><img src="~/images/r4.jpg" alt="" /></a>
+                        <a href="SinglePage"><img src="@ViewBag.Phim.Hinh_anh" alt="" /></a>
                     </div>
                     <div class="review-info">
-                        <a class="span" href="SinglePage">Lorem  <i>Movie Review</i></a>
+                        <strong class="span" href="SinglePage">@ViewBag.Phim.Ten_phim</strong>
                         <p class="dirctr"><a href="">Reagan Gavin Rasquinha, </a>TNN, Mar 12, 2015, 12.47PM IST</p>
                         <p class="ratingview">Critic's Rating:</p>
                         <div class="rating">
@@ -56,7 +55,7 @@
                                 </select>
                             </div>
                             <div class="rtm text-center">
-                                <a href="#">REVIEW THIS MOVIE</a>
+                                <a href="#">Book Now !</a>
                             </div>
                             <div class="wt text-center">
                                 <a href="#">WATCH THIS TRAILER</a>
@@ -66,7 +65,7 @@
                         <p class="info">CAST:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
                         <p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
                         <p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Crime</p>
-                        <p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; 1 hour 45 minutes</p>
+                        <p class="info">DURATION:&nbsp;&nbsp;&nbsp; &nbsp; @ViewBag.Phim.Thoi_luong minutes</p>
                     </div>
                     <div class="clearfix"></div>
                 </div>

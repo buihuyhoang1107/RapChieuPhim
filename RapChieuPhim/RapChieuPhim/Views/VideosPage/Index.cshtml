@@ -73,32 +73,32 @@
                             if (i % 4 != 0) {
                                 document.getElementById("_main_content").innerHTML +=
                                     `<div class="content-grid">
-                                                                                                        <div class="Video_p" style="display: none">${phim.video}</div>
-                                                                                                        <div class="id_p" style="display: none">${phim.id}</div>
-                                                                                                        <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><img src="${phim.hinh_anh}" title="trailer Phim" /></a>
-                                                                                                        <h3>${phim.ten_phim}</h3>
-                                                                                                        <ul>
-                                                                                                            <li><a href="#"><img src="/images/likes.png" title="image-name" /></a></li>
-                                                                                                            <li><a href="#"><img src="/images/views.png" title="image-name" />${phim.luot_xem}</a></li>
-                                                                                                            <li><a href="#"><img src="/images/link.png" title="image-name" /></a></li>
-                                                                                                        </ul>
-                                                                                                        <a class="button play-icon popup-with-zoom-anim" href="#small-dialog">Watch now</a>
-                                                                                                    </div> `;
+                                        <div class="Video_p" style="display: none">${phim.video}</div>
+                                        <div class="id_p" style="display: none">${phim.id}</div>
+                                        <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><img src="${phim.hinh_anh}" title="trailer Phim" /></a>
+                                        <h3>${phim.ten_phim}</h3>
+                                        <ul>
+                                            <li><a href="#"><img src="/images/likes.png" title="image-name" /></a></li>
+                                            <li><a href="#"><img src="/images/views.png" title="image-name" />${phim.luot_xem}</a></li>
+                                            <li><a href="#"><img src="/images/link.png" title="image-name" /></a></li>
+                                        </ul>
+                                        <a class="button play-icon" href="./SinglePage?page=${phim.id}">Reviews</a>
+                                    </div> `;
                             }
                             else {
                                 document.getElementById("_main_content").innerHTML +=
                                     `<div class="content-grid last-grid" >
-                                                                                                        <div class="Video_p" style="display: none">${phim.video}</div>
-                                                                                                        <div class="id_p" style="display: none">${phim.id}</div>
-                                                                                                        <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><img src="${phim.hinh_anh}" title="trailer Phim" /></a>
-                                                                                                        <h3>${phim.ten_phim}</h3>
-                                                                                                        <ul>
-                                                                                                            <li><a href="#"><img src="/images/likes.png" title="image-name" /></a></li>
-                                                                                                            <li><a href="#"><img src="/images/views.png" title="image-name" />${phim.luot_xem}</a></li>
-                                                                                                            <li><a href="#"><img src="/images/link.png" title="image-name" /></a></li>
-                                                                                                        </ul>
-                                                                                                        <a class="button play-icon popup-with-zoom-anim" href="#small-dialog">Watch now</a>
-                                                                                                    </div>`;
+                                        <div class="Video_p" style="display: none">${phim.video}</div>
+                                        <div class="id_p" style="display: none">${phim.id}</div>
+                                        <a class="play-icon" href="./asdasd"><img src="${phim.hinh_anh}" title="trailer Phim" /></a>
+                                        <h3>${phim.ten_phim}</h3>
+                                        <ul>
+                                            <li><a href="#"><img src="/images/likes.png" title="image-name" /></a></li>
+                                            <li><a href="#"><img src="/images/views.png" title="image-name" />${phim.luot_xem}</a></li>
+                                            <li><a href="#"><img src="/images/link.png" title="image-name" /></a></li>
+                                        </ul>
+                                        <a class="button play-icon" href="./SinglePage?page=${phim.id}">Reviews</a>
+                                    </div>`;
                             }
                             ++i;
                         });
@@ -126,7 +126,7 @@
 
                             var id = this.parentElement.children[1].textContent;
                             console.log(id);
-                            var views = this.parentElement.children[4].children[1].children[0];//.getElementsByTagName("ul")[2];
+                            var views = this.parentElement.children[4].children[1].children[0];
                             console.log(views);
                             $.ajax({
                                 type: "GET",
@@ -143,8 +143,6 @@
                     }
                 });
             }
-
-
         });
     </script>
 }
