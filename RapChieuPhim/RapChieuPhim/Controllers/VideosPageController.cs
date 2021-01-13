@@ -8,8 +8,10 @@ namespace RapChieuPhim.Controllers
 {
     public class VideosPageController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] int? page)
         {
+            if (page == null) page = 1;
+            ViewData["PageId"] = page;
             return View();
         }
     }

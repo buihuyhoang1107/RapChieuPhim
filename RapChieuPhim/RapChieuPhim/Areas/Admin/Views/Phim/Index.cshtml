@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Ten_phim)
             </th>
             <th>
@@ -37,8 +40,12 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ten_phim)
             </td>
@@ -63,9 +70,61 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a type="button" class="Delete" style="color:#007bff;" name="@item.ID">Delete</a> |
+                <a type="button" class="Restore" style="color:#007bff;" name="@item.ID">Restore</a> <br />
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(".Delete").click((e) => {
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            console.log("id");
+            $.ajax({
+                type: 'POST',
+                //chay đc rồi nha
+                url: `./phim/Delete/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    console.log(data);
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[7]
+                        .children[0]
+                        .checked = true;
+                }
+            });
+        });
+        $(".Restore").click((e) => {
+            console.log("bbbbbbbbbb");
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                //chay đc rồi nha
+                url: `./phim/Restore/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    console.log(data);
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[7]
+                        .children[0]
+                        .checked = false;
+                }
+            });
+        });
+    </script>
+}
