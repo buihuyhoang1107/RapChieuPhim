@@ -23,11 +23,15 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan
         public async Task<IActionResult> Index(String ten)
         {
-            //var dstk = from taikhoan  in _context.TaiKhoanModel
-            //           select taikhoan;
-            var dstk = (from s in _context.TaiKhoanModel
-                        join c in _context.NguoiDungModel on s.NguoiDung_ID equals c.ID
-                        select s).ToList();
+            var dstk = from taikhoan in _context.TaiKhoanModel
+                       select taikhoan;
+            if (!String.IsNullOrWhiteSpace(ten))
+            {
+                dstk = dstk.Where(s => s.Ten_dang_nhap.Contains(ten));
+            }
+            //var dstk = (from s in _context.TaiKhoanModel
+            //            join c in _context.NguoiDungModel on s.NguoiDung_ID equals c.ID
+            //            select s).ToList();
 
             ViewBag.dstk = dstk;
             return View();
