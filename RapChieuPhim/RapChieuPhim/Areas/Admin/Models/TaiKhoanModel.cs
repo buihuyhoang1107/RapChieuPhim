@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,9 +12,17 @@ namespace RapChieuPhim.Areas.Admin.Models
     {
         [Key]
         public int ID { get; set; } // string -> int
+        [DisplayName("Tên đăng nhập")]
+
         public string Ten_dang_nhap { get; set; }
+        [DisplayName("Mật khẩu")]
+
         public string Mat_khau { get; set; }
+        [DisplayName("Loại tài khoản")]
+
         public int Loai_tai_khoan { get; set; }// string -> int
+        [DisplayName("Email")]
+
         public int NguoiDung_ID { get; set; }
         public bool Da_xoa { get; set; }
 

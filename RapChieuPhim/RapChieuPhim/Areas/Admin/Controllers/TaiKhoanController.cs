@@ -21,10 +21,19 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/TaiKhoan
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String ten)
         {
-            var dPContext = _context.TaiKhoanModel.Include(t => t.NguoiDungModel);
-            return View(await dPContext.ToListAsync());
+            //var dstk = from taikhoan  in _context.TaiKhoanModel
+            //           select taikhoan;
+            var dstk = (from s in _context.TaiKhoanModel
+                        join c in _context.NguoiDungModel on s.NguoiDung_ID equals c.ID
+                        select s).ToList();
+
+            ViewBag.dstk = dstk;
+            return View();
+
+            // var dPContext = _context.TaiKhoanModel.Include(t => t.NguoiDungModel);
+            //return View(await dPContext.ToListAsync());
         }
 
         // GET: Admin/TaiKhoan/Details/5
@@ -50,9 +59,12 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
             TaiKhoanModel taiKhoan = new TaiKhoanModel();
-            return PartialView("_TaiKhoanModelPartial", taiKhoan);
+
+            ViewBag.lstTaiKhoan = from l in _context.NguoiDungModel                            
+                                  select l;
+            ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID");
+            return View();
         }
 
 
@@ -86,6 +98,9 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.lstTaiKhoan = from l in _context.NguoiDungModel
+                                  select l;
+          
             ViewData["NguoiDung_ID"] = new SelectList(_context.NguoiDungModel, "ID", "ID", taiKhoanModel.NguoiDung_ID);
             return View(taiKhoanModel);
         }
