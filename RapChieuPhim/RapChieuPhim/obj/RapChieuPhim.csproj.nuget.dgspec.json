@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
+    "C:\\Users\\kimhu\\Desktop\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
   },
   "projects": {
-    "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
+    "C:\\Users\\kimhu\\Desktop\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectUniqueName": "C:\\Users\\kimhu\\Desktop\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "projectName": "RapChieuPhim",
-        "projectPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
-        "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
-        "outputPath": "d:\\Desktop\\doan_asp\\Liem\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
+        "projectPath": "C:\\Users\\kimhu\\Desktop\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "packagesPath": "C:\\Users\\kimhu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kimhu\\Desktop\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kimhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -77,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
