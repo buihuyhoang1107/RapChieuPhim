@@ -1,11 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model TaiKhoanModel
+@{
 
+}
 <div class="main">
     @await Html.PartialAsync("../Shared/_MenuPartial.cshtml")
     <div class="header">
-        @await Html.PartialAsync("../Shared/_TopHeaderPartial.cshtml")
+        <div class="top-header">
+            <div class="col-md-6 logo col-md-6">
+                <a href="Home"><img src="~/images/logo.png" alt="" /></a>
+                <p>Movie Theater</p>
+            </div>
+            <div class="col-md-6 news-right-grid">
+                <div class="col-md-6"> </div>
+                <div class="col-md-6">
+
+                    @if (@Model != null)
+                    {
+                        <p>user name:@Model.Ten_dang_nhap</p>
+
+                    }
+                    else
+                    {
+                        <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="Index">Đăng ký</a>
+                        <a href="#">/</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="Index">Đăng nhập</a>
+                    }
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
 
         <div class="header-info">
             <h1>BIG HERO 6</h1>

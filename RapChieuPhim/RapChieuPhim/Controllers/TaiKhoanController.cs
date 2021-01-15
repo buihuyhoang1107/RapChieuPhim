@@ -8,6 +8,7 @@ using RapChieuPhim.Areas.Admin.Models;
 using RapChieuPhim.Areas.Admin.Data;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace RapChieuPhim.Controllers
 {
@@ -19,17 +20,23 @@ namespace RapChieuPhim.Controllers
         {
             _context = context;
         }
-        public IActionResult Index() {
-            return View();
+        public IActionResult Index() 
+        {
+               
+                return View();
+            
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login([Bind("Ten_dang_nhap", "Mat_khau")] TaiKhoanModel taikhoan) {
+           
             var r = _context.TaiKhoanModel.Where(m => (m.Ten_dang_nhap == taikhoan.Ten_dang_nhap && m.Mat_khau == StringProcessing.CreateMD5Hash(taikhoan.Mat_khau))).ToList();
             if (r.Count == 0) {
-                return View("Error");
+                return View("Index");
             }
             var str = JsonConvert.SerializeObject(taikhoan);
-            HttpContext.Session.SetString("user", str);
-            if (r[0].Loai_tai_khoan == "Quanly") {
+            HttpContext.Session.SetString("taikhoan", str);
+            if (r[0].Loai_tai_khoan == "Vip") {
 
                 var url = Url.RouteUrl("areas", new { Controller = "Home", action = "Index", area = "admin" });
                 return Redirect(url);

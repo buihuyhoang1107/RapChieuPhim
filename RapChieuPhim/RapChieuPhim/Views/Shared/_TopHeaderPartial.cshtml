@@ -1,13 +1,29 @@
-﻿<div class="top-header">
-    <div class="logo">
+﻿@model TaiKhoanModel
+@{ 
+
+}
+<div class="top-header">
+    <div class="col-md-6 logo col-md-6">
         <a href="Home"><img src="~/images/logo.png" alt="" /></a>
         <p>Movie Theater</p>
     </div>
-    <div class="search">
-        <form>
-            <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}" />
-            <input type="submit" value="">
-        </form>
+    <div class="col-md-6 news-right-grid">
+        <div class="col-md-6"> </div>
+        <div class="col-md-6">
+
+            @if (@Model!=null)
+            {
+                <p>user name:@Model.Ten_dang_nhap</p>
+
+            }
+            else
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="Index">Đăng ký</a>
+                <a href="#">/</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="Index">Đăng nhập</a>
+            }
+
+        </div>
     </div>
     <div class="clearfix"></div>
 </div>

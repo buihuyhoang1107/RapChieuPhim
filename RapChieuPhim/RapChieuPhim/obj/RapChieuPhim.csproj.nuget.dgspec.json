@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "M:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
+    "E:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {}
   },
   "projects": {
-    "M:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
+    "E:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectUniqueName": "E:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "projectName": "RapChieuPhim",
-        "projectPath": "M:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+        "projectPath": "E:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "M:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
+        "outputPath": "E:\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

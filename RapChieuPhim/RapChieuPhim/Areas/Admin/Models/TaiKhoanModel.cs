@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-
+using RapChieuPhim.Areas.Admin.Data;
 namespace RapChieuPhim.Areas.Admin.Models
 {
     public class TaiKhoanModel

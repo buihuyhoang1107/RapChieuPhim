@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using RapChieuPhim.Areas.Admin.Data;
 using RapChieuPhim.Areas.Admin.Models;
 
@@ -19,7 +21,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         {
             _context = context;
         }
-
         // GET: Admin/TaiKhoan
         public async Task<IActionResult> Index()
         {
@@ -60,8 +61,9 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Ten_dang_nhap,Mat_khau,Loai_tai_khoan,NguoiDung_ID,Da_xoa")] TaiKhoanModel taiKhoanModel)
         {
+            
             if (ModelState.IsValid)
-            {
+            { 
                 _context.Add(taiKhoanModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
