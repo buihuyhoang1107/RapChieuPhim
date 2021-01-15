@@ -1361,7 +1361,6 @@ C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcorea
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.csprojAssemblyReference.cache
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.AssemblyInfoInputs.cache
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.AssemblyInfo.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.csproj.CoreCompileInputs.cache
@@ -1385,7 +1384,6 @@ C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcorea
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\Details.cshtml.g.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\Edit.cshtml.g.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\Index.cshtml.g.cs
-C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LichChieu\Create.cshtml.g.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LichChieu\Delete.cshtml.g.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\LichChieu\Details.cshtml.g.cs
@@ -1462,3 +1460,6 @@ C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcorea
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.dll
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.pdb
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.genruntimeconfig.cache
+C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.csprojAssemblyReference.cache
+C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Login.cshtml.g.cs
+C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs

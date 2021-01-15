@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan
         public async Task<IActionResult> Index(String ten)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             var dstk = from taikhoan in _context.TaiKhoanModel
                        select taikhoan;
             if (!String.IsNullOrWhiteSpace(ten))
@@ -43,6 +48,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -63,6 +72,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             TaiKhoanModel taiKhoan = new TaiKhoanModel();
 
             ViewBag.lstTaiKhoan = from l in _context.NguoiDungModel                            
@@ -79,6 +92,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Ten_dang_nhap,Mat_khau,Loai_tai_khoan,NguoiDung_ID,Da_xoa")] TaiKhoanModel taiKhoanModel)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(taiKhoanModel);
@@ -92,6 +109,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -116,6 +137,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Ten_dang_nhap,Mat_khau,Loai_tai_khoan,NguoiDung_ID,Da_xoa")] TaiKhoanModel taiKhoanModel)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             if (id != taiKhoanModel.ID)
             {
                 return NotFound();
@@ -148,6 +173,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -169,6 +198,10 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (HttpContext.Session.GetString("tk") == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home", area = "Admin" });
+            }
             var taiKhoanModel = await _context.TaiKhoanModel.FindAsync(id);
             _context.TaiKhoanModel.Remove(taiKhoanModel);
             await _context.SaveChangesAsync();
