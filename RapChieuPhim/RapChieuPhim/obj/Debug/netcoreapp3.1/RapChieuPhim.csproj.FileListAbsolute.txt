@@ -1361,7 +1361,6 @@ C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcorea
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.csprojAssemblyReference.cache
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.AssemblyInfoInputs.cache
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.AssemblyInfo.cs
 C:\Users\kimhu\Desktop\RapChieuPhim\RapChieuPhim\RapChieuPhim\obj\Debug\netcoreapp3.1\RapChieuPhim.csproj.CoreCompileInputs.cache
