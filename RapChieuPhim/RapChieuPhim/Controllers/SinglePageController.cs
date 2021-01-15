@@ -18,8 +18,8 @@ namespace RapChieuPhim.Controllers
         }
         public IActionResult Index([FromQuery] int? page)
         {
-            
-            if (page == null) page = _context.PhimModel.FirstOrDefault(p => p.Da_xoa == false).ID;
+
+            if (page == null) NotFound();
 
             ViewBag.Phim = (PhimModel)_context.PhimModel.FirstOrDefault(p => p.ID == page);
             return View();

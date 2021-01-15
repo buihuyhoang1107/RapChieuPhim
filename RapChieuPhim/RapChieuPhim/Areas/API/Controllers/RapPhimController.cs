@@ -21,6 +21,23 @@ namespace RapChieuPhim.Areas.API.Controllers
             _context = context;
         }
 
+        // GET: api/RapPhim/phim/1
+        [HttpGet("phim/{phim_id}")]
+        public async Task<ActionResult<IEnumerable<RapPhimModel>>> GetRapPhimModel_Phim(int? phim_id)
+        {
+            if (phim_id == null) return null;
+            var data = await _context.RapPhimModel.Where(
+                r => _context.LichChieuModel.Where(
+                    l => _context.XuatChieuModel.Where(
+                        x => x.Phim_ID == phim_id)
+                        .Select(x => x.LichChieu_ID)
+                        .Contains(l.ID))
+                    .Select(l => l.RapPhim_ID)
+                    .Contains(r.ID) && r.Da_xoa == false).ToListAsync();
+            if (data.Count == 0) return null;
+            return data;
+        }
+
         // GET: api/RapPhim
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RapPhimModel>>> GetRapPhimModel()
@@ -38,66 +55,6 @@ namespace RapChieuPhim.Areas.API.Controllers
             {
                 return NotFound();
             }
-
-            return rapPhimModel;
-        }
-
-        // PUT: api/RapPhim
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRapPhimModel(int id, RapPhimModel rapPhimModel)
-        {
-            if (id != rapPhimModel.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(rapPhimModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RapPhimModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/RapPhim
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<RapPhimModel>> PostRapPhimModel(RapPhimModel rapPhimModel)
-        {
-            _context.RapPhimModel.Add(rapPhimModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetRapPhimModel", new { id = rapPhimModel.ID }, rapPhimModel);
-        }
-
-        // DELETE: api/RapPhim/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<RapPhimModel>> DeleteRapPhimModel(int id)
-        {
-            var rapPhimModel = await _context.RapPhimModel.FindAsync(id);
-            if (rapPhimModel == null)
-            {
-                return NotFound();
-            }
-
-            _context.RapPhimModel.Remove(rapPhimModel);
-            await _context.SaveChangesAsync();
 
             return rapPhimModel;
         }
