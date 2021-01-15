@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RapChieuPhim.Areas.Admin.Data;
 using RapChieuPhim.Areas.API.Models;
 
@@ -32,15 +34,16 @@ namespace RapChieuPhim.Areas.API.Controllers
         {
             return "value";
         }
-
+   
         // POST api/<LoginController>
         [HttpPost]
         public bool Post(Login value)
         {
-            var list = _context.TaiKhoanModel.FirstOrDefault(m => m.Ten_dang_nhap == value.username && m.Mat_khau == value.password && m.Loai_tai_khoan == 1);
-            
-            if(list != null)
+            var tk = _context.TaiKhoanModel.FirstOrDefault(m => m.Ten_dang_nhap == value.username && m.Mat_khau == value.password && m.Loai_tai_khoan == 1);
+            if (tk != null)
             {
+                var str = JsonConvert.SerializeObject(tk);
+                HttpContext.Session.SetString("tk", str);            
                 return true;
             }
             return false;

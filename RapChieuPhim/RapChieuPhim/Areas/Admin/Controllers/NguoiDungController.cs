@@ -31,6 +31,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             //}
             //ViewBag.dstk = dstk;
             //return View();
+          
             return View(await _context.NguoiDungModel.ToListAsync());
         }
 
