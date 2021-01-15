@@ -1,0 +1,229 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@section css {
+    <link href="~/css/booking.css" rel="stylesheet" />
+}
+
+<div class="main">
+    @await Html.PartialAsync("../Shared/_MenuPartial.cshtml")
+    <div class="contact-content container>
+        @await Html.PartialAsync("../Shared/_TopHeaderPartial.cshtml")
+        <div class="main-contact ">
+            <div class="row">
+                <h2 id="ten_phim">Chọn phim</h2>
+                <select name="Phim" id="Phim_id" class="col-lg-6">
+                    @if (ViewBag.ListPhim.Count == 0)
+                    {
+                        <option value="-1">Không có phim này</option>
+                    }
+                    @foreach (PhimModel phim in ViewBag.ListPhim)
+                    {
+                        <option value="@phim.ID">@phim.Ten_phim</option>
+                    }
+                </select>
+            </div>
+            <div class="row">
+                <p class="col-lg-6 ">Chọn rạp phim</p>
+                <select name="rap" id="Rap_phim_id" class="col-lg-6">
+                    @if (ViewBag.RapPhim.Count == 0)
+                    {
+                        <option value="-1">Không có rạp chiếu phim này</option>
+                    }
+                    @foreach (RapPhimModel rap in ViewBag.RapPhim)
+                    {
+                        <option value="@rap.ID">@rap.Ten_rap</option>
+                    }
+                </select>
+            </div>
+            <div class="row">
+                <p class="col-lg-6">Chọn lịch chiếu</p>
+                <select name="rap" id="Lich_Chieu_id" class="col-lg-6">
+                    @if (ViewBag.LichChieu.Count == 0)
+                    {
+                        <option value="-1">Không có lịch chiếu phim này</option>
+                    }
+                    @foreach (LichChieuModel lich in ViewBag.LichChieu)
+                    {
+                        <option value="@lich.ID">@lich.Ngay.ToShortDateString()</option>
+                    }
+                </select>
+            </div>
+            <div class="row">
+                <p class="col-lg-6">Chọn xuất chiếu</p>
+                <select name="rap" id="Xuat_Chieu_id" class="col-lg-6">
+                    @if (ViewBag.XuatChieu.Count == 0)
+                    {
+                        <option value="-1">Không có xuất chiếu phim này</option>
+                    }
+                    @foreach (XuatChieuModel xuat in ViewBag.XuatChieu)
+                    {
+                        <option value="@xuat.ID">@xuat.Thoi_gian</option>
+                    }
+                </select>
+            </div>
+            <div class="clearfix"></div>
+            <h3>Chọn Ghế</h3>
+            <div class="row col-lg-6" id="ghe_id">
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="col-lg-4 text-right"><b>Tổng tiền: </b></p><p class="col-lg-4 text-right " id="Tong_tien">0</p><p>VND</p>
+                </div>
+                <button type="button" class="btn btn-success col-lg-6 " id="Thanh_toan">Thanh toán</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        @await Html.PartialAsync("../Shared/_FooterPartial.cshtml")
+    </div>
+</div>
+<div class="clearfix"></div>
+
+@section Scripts{
+    <script>
+        var Gia_ve = @ViewBag.Phim.Gia_ve;
+        var List_selected_ghe_id = [];
+        $(document).ready(function () {
+            document.getElementById("Phim_id").value = @ViewBag.Phim.ID;
+            document.getElementById("Phim_id").onchange = function (e) {
+                const id = e.target.value;
+                window.location.href = `./BooksSticker?phim_id=${id}`;
+            };
+            document.getElementById("Rap_phim_id").onchange = function (e) {
+                const rap_id = e.target.value;
+                const phim_id = document.getElementById("Phim_id").value;
+                var lichChieu = document.getElementById("Lich_Chieu_id");
+                $.getJSON(`./api/LichChieu/phim/${phim_id}/rap/${rap_id}`, (data, status) => {
+                    lichChieu.innerHTML = "";
+                    if (data.length == 0) {
+                        var option = document.createElement("option");
+                        option.value = -1;
+                        option.innerText = "Không có lịch chiếu phim này";
+                        return;
+                    };
+                    data.forEach((item) => {
+                        var option = document.createElement("option");
+                        option.value = item.id;
+                        var d = new Date(item.ngay);
+                        var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                        var mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+                        var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                        option.innerText = `${da}/${mo}/${ye}`;
+                        lichChieu.appendChild(option);
+                    });
+                    gender_Lich();
+                });
+            };
+            document.getElementById("Lich_Chieu_id").onchange = gender_Lich;
+            function gender_Lich() {
+                const lich_id = document.getElementById("Lich_Chieu_id").value;
+                const phim_id = document.getElementById("Phim_id").value;
+                var xuatChieu = document.getElementById("Xuat_Chieu_id");
+                $.getJSON(`./api/XuatChieu/phim/${phim_id}/lich/${lich_id}`, (data, status) => {
+                    xuatChieu.innerHTML = "";
+                    if (data.length == 0) {
+                        var option = document.createElement("option");
+                        option.value = -1;
+                        option.innerText = "Không có xuất chiếu phim này";
+                        return;
+                    };
+                    data.forEach((item) => {
+                        var option = document.createElement("option");
+                        option.value = item.id;
+                        option.innerText = item.thoi_gian;
+                        xuatChieu.appendChild(option);
+                    });
+                    gender_Ghe();
+                });
+            };
+            document.getElementById("Xuat_Chieu_id").onchange = function () {
+                gender_Ghe();
+            };
+
+            const gender_Ghe = () => {
+                const xuatChieu_id = document.getElementById("Xuat_Chieu_id").value;
+                const phim_id = document.getElementById("Phim_id").value;
+                $.getJSON(`./api/ghe/phim/${phim_id}/xuat/${xuatChieu_id}`, (data, status) => {
+
+                    document.getElementById("Phim_id").value = @ViewBag.Phim.ID;
+
+                    var list_ghe = document.getElementById("ghe_id");
+                    list_ghe.innerHTML = "";
+                    var str = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+                    //console.log(list_ghe);
+                    for (i = 0; i < 9; ++i) {
+                        for (j = 0; j < 10; ++j) {
+
+                            var ghe_id = document.createElement("div");
+                            ghe_id.className = data[i*10 + j].id;
+                            ghe_id.setAttribute("display", "none");
+
+                            var ghe = document.createElement("button");
+                            ghe.className = "col-xs-1-10 btn btn-info";
+                            ghe.innerText = str[i] + j;
+                            ghe_id.appendChild(ghe)
+
+                            list_ghe.appendChild(ghe_id);
+                        }
+                    }
+
+                    $.getJSON(`./api/VeXemPhim/phim/${phim_id}/xuat/${xuatChieu_id}`, (data, status) => {
+                        //var list_ghe = document.getElementById("ghe_id");
+                        console.log(data);
+                        data.forEach((item) => {
+                            document.getElementById("ghe_id").getElementsByClassName(`${item.ghe_ID}`)[0].children[0].className = "col-xs-1-10 btn btn-danger";
+                        });
+                    });
+
+                });
+            }
+            gender_Ghe();
+        });
+        $(document).on("click", ".btn-info", function (e) {
+            console.log(e.target);
+            e.target.className = "col-xs-1-10 btn btn-warning";
+            document.getElementById("Tong_tien").innerText = parseInt(document.getElementById("Tong_tien").innerText) + Gia_ve;
+            List_selected_ghe_id.push(parseInt(e.target.parentElement.className));
+        });
+        $(document).on("click", ".btn-warning", function (e) {
+            console.log(e.target);
+            e.target.className = "col-xs-1-10 btn btn-info";
+            document.getElementById("Tong_tien").innerText = parseInt(document.getElementById("Tong_tien").innerText) - Gia_ve;
+            const index = List_selected_ghe_id.indexOf(parseInt(e.target.parentElement.className));
+            if (index > -1) {
+                List_selected_ghe_id.splice(index, 1);
+            }
+        });
+        $(document).on("click", "#Thanh_toan", function (e) {
+            if (List_selected_ghe_id.length <= 0) {
+                alert("Không đủ thông tin để thanh toán !");
+                return;
+            }
+            const data = {
+                phim_id : document.getElementById("Phim_id").value,
+                xuatChieu_id: document.getElementById("Xuat_Chieu_id").value,
+                listGhe: List_selected_ghe_id,
+            }
+            console.log(data);
+            var settings = {
+                "url": "./api/DatVe",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify(data),
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    alert("Thành công !");
+                    location.reload();
+                }
+                else
+                    alert("Không thành công !");
+            });
+        });
+    </script>
+}

@@ -14,9 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
-                <label asp-for="Thoi_gian" class="control-label"></label>
-                <input asp-for="Thoi_gian" class="form-control" />
-                <span asp-validation-for="Thoi_gian" class="text-danger"></span>
+                <label asp-for="XuatChieu_id" class="control-label"></label>
+                <select asp-for="XuatChieu_id" class="form-control" asp-items="ViewBag.XuatChieu_id"></select>
+                <span asp-validation-for="XuatChieu_id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Ghe_ID" class="control-label"></label>
@@ -59,6 +59,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

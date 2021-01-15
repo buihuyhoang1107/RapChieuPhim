@@ -21,6 +21,21 @@ namespace RapChieuPhim.Areas.API.Controllers
             _context = context;
         }
 
+        // GET: api/Ghe/Rap/1
+        [HttpGet("phim/{phim_id}/xuat/{xuat_id}")]
+        public async Task<ActionResult<IEnumerable<GheModel>>> GetGheModel_r_x(int? phim_id, int? xuat_id)
+        {
+            if (xuat_id == null || phim_id == null)
+            {
+                return NotFound();
+            }
+            return await _context.GheModel
+                .Where(g => _context.XuatChieuModel
+                .Where(x => x.ID == xuat_id
+                    && x.Phim_ID == phim_id
+                    && x.Da_xoa == false).Select(x => x.PhongChieu_ID).Contains(g.PhongChieu_ID)).ToListAsync();
+        }
+
         // GET: api/Ghe
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GheModel>>> GetGheModel()

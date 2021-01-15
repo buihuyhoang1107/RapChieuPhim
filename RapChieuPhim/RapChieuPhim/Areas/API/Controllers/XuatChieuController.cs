@@ -28,6 +28,15 @@ namespace RapChieuPhim.Areas.API.Controllers
             return await _context.XuatChieuModel.ToListAsync();
         }
 
+        // GET: api/XuatChieu/phim/7/lich/2
+        [HttpGet("phim/{phim_id}/lich/{lich_id}")]
+        public async Task<IEnumerable<XuatChieuModel>> GetXuatChieuModel_p_r_l(int? phim_id, int? lich_id)
+        {
+            var XuatChieu = await _context.XuatChieuModel.Where(x => x.Phim_ID == phim_id && x.LichChieu_ID == lich_id).ToListAsync();
+
+            return XuatChieu;
+        }
+
         // GET: api/XuatChieu/5
         [HttpGet("{id}")]
         public async Task<ActionResult<XuatChieuModel>> GetXuatChieuModel(int id)

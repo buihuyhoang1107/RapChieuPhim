@@ -21,6 +21,39 @@ namespace RapChieuPhim.Areas.API.Controllers
             _context = context;
         }
 
+        // GET: api/LichChieu/phim/7/rap/1
+        [HttpGet("phim/{phim_id}/Rap/{rap_id}")]
+        public async Task<ActionResult<IEnumerable<LichChieuModel>>> GetLichChieuModel_p_r(int? phim_id, int? rap_id)
+        {
+            //var rapPhim = await _context.RapPhimModel.Where(
+            //      r => _context.LichChieuModel.Where(
+            //          l => _context.XuatChieuModel.Where(
+            //              x => x.Phim_ID == phim_id)
+            //              .Select(x => x.LichChieu_ID)
+            //              .Contains(l.ID))
+            //          .Select(l => l.RapPhim_ID)
+            //          .Contains(r.ID) && r.Da_xoa == false && r.ID == rap_id).ToListAsync();
+
+            //var data = await _context.LichChieuModel
+            //       .Where(l => rapPhim.Select(r => r.ID)
+            //       .Contains(l.RapPhim_ID)
+            //       && _context.XuatChieuModel.Where(x => x.Phim_ID == phim_id).Select(x => x.LichChieu_ID).Contains(l.ID)
+            //       && l.Da_xoa == false).ToListAsync();
+
+            var data = await _context.LichChieuModel
+                .Where(l => l.RapPhim_ID == rap_id
+                    && _context.XuatChieuModel
+                .Where(x => x.Da_xoa == false
+                    && x.LichChieu_ID == l.ID
+                    && x.Phim_ID == phim_id)
+                .Select(x => x.LichChieu_ID)
+                .Contains(l.ID)
+                    && l.Da_xoa == false).ToListAsync();
+
+            return data;
+        }
+
+
         // GET: api/LichChieu
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LichChieuModel>>> GetLichChieuModel()
@@ -38,66 +71,6 @@ namespace RapChieuPhim.Areas.API.Controllers
             {
                 return NotFound();
             }
-
-            return lichChieuModel;
-        }
-
-        // PUT: api/LichChieu/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLichChieuModel(int id, LichChieuModel lichChieuModel)
-        {
-            if (id != lichChieuModel.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(lichChieuModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LichChieuModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/LichChieu
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<LichChieuModel>> PostLichChieuModel(LichChieuModel lichChieuModel)
-        {
-            _context.LichChieuModel.Add(lichChieuModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetLichChieuModel", new { id = lichChieuModel.ID }, lichChieuModel);
-        }
-
-        // DELETE: api/LichChieu/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<LichChieuModel>> DeleteLichChieuModel(int id)
-        {
-            var lichChieuModel = await _context.LichChieuModel.FindAsync(id);
-            if (lichChieuModel == null)
-            {
-                return NotFound();
-            }
-
-            _context.LichChieuModel.Remove(lichChieuModel);
-            await _context.SaveChangesAsync();
 
             return lichChieuModel;
         }

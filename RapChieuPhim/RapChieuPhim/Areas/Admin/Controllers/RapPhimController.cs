@@ -174,7 +174,6 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             rapPhimModel = await _context.RapPhimModel.FindAsync(id);
             rapPhimModel.Da_xoa = true;
             _context.RapPhimModel.Update(rapPhimModel);
-
             var listPhong = _context.PhongChieuModel.Where(phong => phong.RapPhim_ID == id);
             foreach (var phong in listPhong)
             {
