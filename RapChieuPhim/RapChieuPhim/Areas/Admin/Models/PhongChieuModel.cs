@@ -13,12 +13,13 @@ namespace RapChieuPhim.Areas.Admin.Models
         public int ID { get; set; }
         public string Ten_Phong { get; set; }
         public bool Da_xoa { get; set; }
-        public int RapPhim_ID { get; set; }
+        public int? RapPhim_ID { get; set; }
 
         [ForeignKey("RapPhim_ID")]
         public virtual RapPhimModel idRapPhim { get; set; }
 
         public ICollection<GheModel> lstGhe { get; set; }
 
+        public ICollection<XuatChieuModel> lstXuatChieu { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace RapChieuPhim.Areas.Admin.Models
         [Key]
         public int ID { get; set; }
 
-
-        [DataType(DataType.Time)]
-        public DateTime Thoi_gian { get; set; }
+        public int? XuatChieu_id { get; set; }
+        [ForeignKey("XuatChieu_id")]
+        public virtual XuatChieuModel idXuatChieu { get; set; }
 
         public int? Ghe_ID { get; set; }
         [ForeignKey("Ghe_ID")]
@@ -37,6 +37,5 @@ namespace RapChieuPhim.Areas.Admin.Models
         public virtual HoaDonModel idHoaDon { get; set; }
 
         public bool DaXoa { get; set; }
-
     }
 }

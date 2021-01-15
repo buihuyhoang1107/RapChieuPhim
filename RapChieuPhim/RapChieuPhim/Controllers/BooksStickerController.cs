@@ -30,14 +30,18 @@ namespace RapChieuPhim.Controllers
             var rapPhim = _context.RapPhimModel.Where(
                 r => _context.LichChieuModel.Where(
                     l => _context.XuatChieuModel.Where(
-                        x => x.Phim_ID == phim_id)
+                        x => x.Phim_ID == phim_id
+                        && x.Da_xoa == false)
                         .Select(x => x.LichChieu_ID)
-                        .Contains(l.ID))
+                        .Contains(l.ID)
+                    && l.Da_xoa == false)
                     .Select(l => l.RapPhim_ID)
                     .Contains(r.ID) && r.Da_xoa == false).ToList();
             ViewBag.RapPhim = rapPhim;
 
-            var lichChieu = _context.LichChieuModel
+            try
+            {
+                var lichChieu = _context.LichChieuModel
                 .Where(l => l.RapPhim_ID == rapPhim[0].ID
                 && l.Da_xoa == false
                 && _context.XuatChieuModel
@@ -45,18 +49,24 @@ namespace RapChieuPhim.Controllers
                 && x.Da_xoa == false)
                 .Select(x => x.LichChieu_ID)
                 .Contains(l.ID)).ToList();
-            ViewBag.LichChieu = lichChieu;
+                ViewBag.LichChieu = lichChieu;
 
-            ViewBag.XuatChieu = (from xuat in _context.XuatChieuModel
-                                 join lich in _context.LichChieuModel on xuat.LichChieu_ID equals lich.ID
-                                 join rap in _context.RapPhimModel on lich.RapPhim_ID equals rap.ID
-                                 where xuat.Phim_ID == phim_id
-                                 && xuat.Da_xoa == false
-                                 && lich.Da_xoa == false
-                                 && rap.Da_xoa == false
-                                 && rap.ID == rapPhim[0].ID
-                                 && lich.ID == lichChieu[0].ID
-                                 select xuat).ToList();
+                ViewBag.XuatChieu = (from xuat in _context.XuatChieuModel
+                                     join lich in _context.LichChieuModel on xuat.LichChieu_ID equals lich.ID
+                                     join rap in _context.RapPhimModel on lich.RapPhim_ID equals rap.ID
+                                     where xuat.Phim_ID == phim_id
+                                     && xuat.Da_xoa == false
+                                     && lich.Da_xoa == false
+                                     && rap.Da_xoa == false
+                                     && rap.ID == rapPhim[0].ID
+                                     && lich.ID == lichChieu[0].ID
+                                     select xuat).ToList();
+            }
+            catch
+            {
+                ViewBag.LichChieu = new List<LichChieuModel>();
+                ViewBag.XuatChieu = new List<XuatChieuModel>();
+            }
             return View();
         }
     }

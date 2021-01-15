@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RapChieuPhim.Areas.Admin.Data;
 
 namespace RapChieuPhim.Migrations
 {
     [DbContext(typeof(DPContext))]
-    partial class DPContextModelSnapshot : ModelSnapshot
+    [Migration("20210115105629_create")]
+    partial class create
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -289,8 +291,8 @@ namespace RapChieuPhim.Migrations
                     b.Property<int?>("RapPhim_ID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("XuatChieu_id")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Thoi_gian")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 
@@ -303,8 +305,6 @@ namespace RapChieuPhim.Migrations
                     b.HasIndex("PhongChieu_ID");
 
                     b.HasIndex("RapPhim_ID");
-
-                    b.HasIndex("XuatChieu_id");
 
                     b.ToTable("VeXemPhimModel");
                 });
@@ -421,10 +421,6 @@ namespace RapChieuPhim.Migrations
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.RapPhimModel", "idRapPhim")
                         .WithMany("lstVeXemPhim")
                         .HasForeignKey("RapPhim_ID");
-
-                    b.HasOne("RapChieuPhim.Areas.Admin.Models.XuatChieuModel", "idXuatChieu")
-                        .WithMany("lstVeXemPhim")
-                        .HasForeignKey("XuatChieu_id");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.XuatChieuModel", b =>

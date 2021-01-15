@@ -90,7 +90,7 @@ namespace RapChieuPhim.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ten_dang_nhap = table.Column<string>(nullable: true),
                     Mat_khau = table.Column<string>(nullable: true),
-                    Loai_tai_khoan = table.Column<string>(nullable: true),
+                    Loai_tai_khoan = table.Column<int>(nullable: false),
                     NguoiDung_ID = table.Column<int>(nullable: false),
                     Da_xoa = table.Column<bool>(nullable: false)
                 },
@@ -162,7 +162,7 @@ namespace RapChieuPhim.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ten_Phong = table.Column<string>(nullable: true),
                     Da_xoa = table.Column<bool>(nullable: false),
-                    RapPhim_ID = table.Column<int>(nullable: false)
+                    RapPhim_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -172,35 +172,7 @@ namespace RapChieuPhim.Migrations
                         column: x => x.RapPhim_ID,
                         principalTable: "RapPhimModel",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "XuatChieuModel",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Thoi_gian = table.Column<string>(nullable: true),
-                    Da_xoa = table.Column<bool>(nullable: false),
-                    LichChieu_ID = table.Column<int>(nullable: false),
-                    Phim_ID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_XuatChieuModel", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_XuatChieuModel_LichChieuModel_LichChieu_ID",
-                        column: x => x.LichChieu_ID,
-                        principalTable: "LichChieuModel",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_XuatChieuModel_PhimModel_Phim_ID",
-                        column: x => x.Phim_ID,
-                        principalTable: "PhimModel",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,6 +196,41 @@ namespace RapChieuPhim.Migrations
                         principalTable: "PhongChieuModel",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "XuatChieuModel",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Thoi_gian = table.Column<string>(nullable: true),
+                    Da_xoa = table.Column<bool>(nullable: false),
+                    LichChieu_ID = table.Column<int>(nullable: true),
+                    Phim_ID = table.Column<int>(nullable: true),
+                    PhongChieu_ID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_XuatChieuModel", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_XuatChieuModel_LichChieuModel_LichChieu_ID",
+                        column: x => x.LichChieu_ID,
+                        principalTable: "LichChieuModel",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_XuatChieuModel_PhimModel_Phim_ID",
+                        column: x => x.Phim_ID,
+                        principalTable: "PhimModel",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_XuatChieuModel_PhongChieuModel_PhongChieu_ID",
+                        column: x => x.PhongChieu_ID,
+                        principalTable: "PhongChieuModel",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -344,6 +351,11 @@ namespace RapChieuPhim.Migrations
                 name: "IX_XuatChieuModel_Phim_ID",
                 table: "XuatChieuModel",
                 column: "Phim_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_XuatChieuModel_PhongChieu_ID",
+                table: "XuatChieuModel",
+                column: "PhongChieu_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

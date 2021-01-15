@@ -22,6 +22,18 @@ namespace RapChieuPhim.Areas.API.Controllers
         }
 
         // GET: api/VeXemPhim
+        [HttpGet("phim/{phim_id}/xuat/{xuat_id}")]
+        public async Task<ActionResult<IEnumerable<VeXemPhimModel>>> GetVeXemPhimModel_p_x(int? phim_id, int? xuat_id)
+        {
+            if (xuat_id == null || phim_id == null)
+            {
+                return NotFound();
+            }
+            return await _context.VeXemPhimModel
+                .Where(v => v.Phim_ID == phim_id && v.XuatChieu_id == xuat_id).ToListAsync();
+        }
+
+        // GET: api/VeXemPhim
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VeXemPhimModel>>> GetVeXemPhimModel()
         {

@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" id="FormSubmit">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
@@ -18,9 +18,14 @@
                 <input asp-for="Ten_Phong" class="form-control" />
                 <span asp-validation-for="Ten_Phong" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Da_xoa" /> @Html.DisplayNameFor(model => model.Da_xoa)
+                </label>
+            </div>
             <div class="form-group">
                 <label asp-for="RapPhim_ID" class="control-label"></label>
-                <select asp-for="RapPhim_ID" class="form-control" asp-items="@(new SelectList(ViewBag.listRap,"ID","Ten_rap"))"></select>
+                <select asp-for="RapPhim_ID" class="form-control" asp-items="ViewBag.RapPhim_ID"></select>
                 <span asp-validation-for="RapPhim_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,35 +36,6 @@
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@Model.RapPhim_ID">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script>
-        $("#FormSubmit").submit(function (e) {
-            e.preventDefault();
-            const post_url = $(this).attr("action");
-            const request_method = $(this).attr("method");
-            const form_data = $(this).serialize(); //Encode form elements for submission
-
-            console.log(post_url);
-            console.log(request_method);
-            console.log(form_data);
-
-            $.ajax({
-                url: post_url,
-                type: request_method,
-                data: form_data
-            }).done(function (response) { //
-                if (response) {
-                    alert("Sửa thành công !");
-                    location.reload();
-                } else {
-                    alert("Sửa không thành công !");
-                }
-            });
-        });
-    </script>
-}

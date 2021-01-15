@@ -11,9 +11,9 @@ namespace RapChieuPhim.Areas.Admin.Models
     {
         [Key]
         public int ID { get; set; }
-        public  string Tong_tien { get; set; }
+        public string Tong_tien { get; set; }
         [DataType(DataType.DateTime)]
-        public DateTime Ngay_lap { get; set; }  
+        public DateTime Ngay_lap { get; set; }
         public bool Da_xoa { get; set; }
         public int NguoiDung_ID { get; set; }
 

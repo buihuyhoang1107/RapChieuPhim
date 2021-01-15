@@ -63,13 +63,16 @@
                     }
                 </select>
             </div>
-
-
             <div class="clearfix"></div>
             <h3>Chọn Ghế</h3>
             <div class="row col-lg-6" id="ghe_id">
             </div>
-
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="col-lg-4 text-right"><b>Tổng tiền: </b></p><p class="col-lg-4 text-right " id="Tong_tien">0</p><p>VND</p>
+                </div>
+                <button type="button" class="btn btn-success col-lg-6 " id="Thanh_toan">Thanh toán</button>
+            </div>
             <div class="clearfix"></div>
         </div>
         @await Html.PartialAsync("../Shared/_FooterPartial.cshtml")
@@ -79,20 +82,10 @@
 
 @section Scripts{
     <script>
+        var Gia_ve = @ViewBag.Phim.Gia_ve;
+        var List_selected_ghe_id = [];
         $(document).ready(function () {
             document.getElementById("Phim_id").value = @ViewBag.Phim.ID;
-            console.log(@ViewBag.Phim.ID)
-            var list_ghe = document.getElementById("ghe_id");
-            var str = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-            //console.log(list_ghe);
-            for (i = 0; i < 9; ++i) {
-                for (j = 0; j < 10; ++j) {
-                    var ghe = document.createElement("div");
-                    ghe.className = "col-xs-1-10 btn btn-info";
-                    ghe.innerText = str[i] + j;
-                    list_ghe.appendChild(ghe);
-                }
-            }
             document.getElementById("Phim_id").onchange = function (e) {
                 const id = e.target.value;
                 window.location.href = `./BooksSticker?phim_id=${id}`;
@@ -101,11 +94,7 @@
                 const rap_id = e.target.value;
                 const phim_id = document.getElementById("Phim_id").value;
                 var lichChieu = document.getElementById("Lich_Chieu_id");
-                console.log(rap_id);
-                console.log(phim_id);
                 $.getJSON(`./api/LichChieu/phim/${phim_id}/rap/${rap_id}`, (data, status) => {
-                    console.log(typeof (data));
-                    console.log(data);
                     lichChieu.innerHTML = "";
                     if (data.length == 0) {
                         var option = document.createElement("option");
@@ -123,40 +112,15 @@
                         option.innerText = `${da}/${mo}/${ye}`;
                         lichChieu.appendChild(option);
                     });
-
-                    const lich_id = lichChieu.value;
-                    const phim_id = document.getElementById("Phim_id").value;
-                    var xuatChieu = document.getElementById("Xuat_Chieu_id");
-                    console.log(lich_id);
-                    console.log(phim_id);
-                    $.getJSON(`./api/XuatChieu/phim/${phim_id}/lich/${lich_id}`, (data, status) => {
-                        console.log(typeof (data));
-                        console.log(data);
-                        xuatChieu.innerHTML = "";
-                        if (data.length == 0) {
-                            var option = document.createElement("option");
-                            option.value = -1;
-                            option.innerText = "Không có xuất chiếu phim này";
-                            return;
-                        };
-                        data.forEach((item) => {
-                            var option = document.createElement("option");
-                            option.value = item.id;
-                            option.innerText = item.thoi_gian;
-                            xuatChieu.appendChild(option);
-                        });
-                    });
+                    gender_Lich();
                 });
             };
-            document.getElementById("Lich_Chieu_id").onchange = function (e) {
-                const lich_id = e.target.value;
+            document.getElementById("Lich_Chieu_id").onchange = gender_Lich;
+            function gender_Lich() {
+                const lich_id = document.getElementById("Lich_Chieu_id").value;
                 const phim_id = document.getElementById("Phim_id").value;
                 var xuatChieu = document.getElementById("Xuat_Chieu_id");
-                console.log(lich_id);
-                console.log(phim_id);
                 $.getJSON(`./api/XuatChieu/phim/${phim_id}/lich/${lich_id}`, (data, status) => {
-                    console.log(typeof (data));
-                    console.log(data);
                     xuatChieu.innerHTML = "";
                     if (data.length == 0) {
                         var option = document.createElement("option");
@@ -170,8 +134,96 @@
                         option.innerText = item.thoi_gian;
                         xuatChieu.appendChild(option);
                     });
+                    gender_Ghe();
                 });
             };
+            document.getElementById("Xuat_Chieu_id").onchange = function () {
+                gender_Ghe();
+            };
+
+            const gender_Ghe = () => {
+                const xuatChieu_id = document.getElementById("Xuat_Chieu_id").value;
+                const phim_id = document.getElementById("Phim_id").value;
+                $.getJSON(`./api/ghe/phim/${phim_id}/xuat/${xuatChieu_id}`, (data, status) => {
+
+                    document.getElementById("Phim_id").value = @ViewBag.Phim.ID;
+
+                    var list_ghe = document.getElementById("ghe_id");
+                    list_ghe.innerHTML = "";
+                    var str = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+                    //console.log(list_ghe);
+                    for (i = 0; i < 9; ++i) {
+                        for (j = 0; j < 10; ++j) {
+
+                            var ghe_id = document.createElement("div");
+                            ghe_id.className = data[i*10 + j].id;
+                            ghe_id.setAttribute("display", "none");
+
+                            var ghe = document.createElement("button");
+                            ghe.className = "col-xs-1-10 btn btn-info";
+                            ghe.innerText = str[i] + j;
+                            ghe_id.appendChild(ghe)
+
+                            list_ghe.appendChild(ghe_id);
+                        }
+                    }
+
+                    $.getJSON(`./api/VeXemPhim/phim/${phim_id}/xuat/${xuatChieu_id}`, (data, status) => {
+                        //var list_ghe = document.getElementById("ghe_id");
+                        console.log(data);
+                        data.forEach((item) => {
+                            document.getElementById("ghe_id").getElementsByClassName(`${item.ghe_ID}`)[0].children[0].className = "col-xs-1-10 btn btn-danger";
+                        });
+                    });
+
+                });
+            }
+            gender_Ghe();
+        });
+        $(document).on("click", ".btn-info", function (e) {
+            console.log(e.target);
+            e.target.className = "col-xs-1-10 btn btn-warning";
+            document.getElementById("Tong_tien").innerText = parseInt(document.getElementById("Tong_tien").innerText) + Gia_ve;
+            List_selected_ghe_id.push(parseInt(e.target.parentElement.className));
+        });
+        $(document).on("click", ".btn-warning", function (e) {
+            console.log(e.target);
+            e.target.className = "col-xs-1-10 btn btn-info";
+            document.getElementById("Tong_tien").innerText = parseInt(document.getElementById("Tong_tien").innerText) - Gia_ve;
+            const index = List_selected_ghe_id.indexOf(parseInt(e.target.parentElement.className));
+            if (index > -1) {
+                List_selected_ghe_id.splice(index, 1);
+            }
+        });
+        $(document).on("click", "#Thanh_toan", function (e) {
+            if (List_selected_ghe_id.length <= 0) {
+                alert("Không đủ thông tin để thanh toán !");
+                return;
+            }
+            const data = {
+                phim_id : document.getElementById("Phim_id").value,
+                xuatChieu_id: document.getElementById("Xuat_Chieu_id").value,
+                listGhe: List_selected_ghe_id,
+            }
+            console.log(data);
+            var settings = {
+                "url": "./api/DatVe",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify(data),
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    alert("Thành công !");
+                    location.reload();
+                }
+                else
+                    alert("Không thành công !");
+            });
         });
     </script>
 }

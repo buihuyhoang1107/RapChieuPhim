@@ -23,7 +23,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/XuatChieu
         public async Task<IActionResult> Index()
         {
-            var dPContext = _context.XuatChieuModel.Include(x => x.idLichChieu).Include(x => x.idPhim);
+            var dPContext = _context.XuatChieuModel.Include(x => x.idLichChieu).Include(x => x.idPhim).Include(x => x.idPhongChieu);
             return View(await dPContext.ToListAsync());
         }
 
@@ -38,6 +38,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var xuatChieuModel = await _context.XuatChieuModel
                 .Include(x => x.idLichChieu)
                 .Include(x => x.idPhim)
+                .Include(x => x.idPhongChieu)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (xuatChieuModel == null)
             {
@@ -50,8 +51,9 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/XuatChieu/Create
         public IActionResult Create()
         {
-            ViewData["LichChieu_ID"] = new SelectList(_context.LichChieuModel, "ID", "ID");
-            ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID");
+            ViewData["LichChieu_ID"] = new SelectList(_context.LichChieuModel, "ID", "Ngay");
+            ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "Ten_phim");
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID");
             return View();
         }
 
@@ -60,7 +62,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Thoi_gian,Da_xoa,LichChieu_ID,Phim_ID")] XuatChieuModel xuatChieuModel)
+        public async Task<IActionResult> Create([Bind("ID,Thoi_gian,Da_xoa,LichChieu_ID,Phim_ID,PhongChieu_ID")] XuatChieuModel xuatChieuModel)
         {
             if (ModelState.IsValid)
             {
@@ -70,6 +72,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             ViewData["LichChieu_ID"] = new SelectList(_context.LichChieuModel, "ID", "ID", xuatChieuModel.LichChieu_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", xuatChieuModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", xuatChieuModel.PhongChieu_ID);
             return View(xuatChieuModel);
         }
 
@@ -88,6 +91,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             ViewData["LichChieu_ID"] = new SelectList(_context.LichChieuModel, "ID", "ID", xuatChieuModel.LichChieu_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", xuatChieuModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", xuatChieuModel.PhongChieu_ID);
             return View(xuatChieuModel);
         }
 
@@ -96,7 +100,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Thoi_gian,Da_xoa,LichChieu_ID,Phim_ID")] XuatChieuModel xuatChieuModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Thoi_gian,Da_xoa,LichChieu_ID,Phim_ID,PhongChieu_ID")] XuatChieuModel xuatChieuModel)
         {
             if (id != xuatChieuModel.ID)
             {
@@ -125,6 +129,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             }
             ViewData["LichChieu_ID"] = new SelectList(_context.LichChieuModel, "ID", "ID", xuatChieuModel.LichChieu_ID);
             ViewData["Phim_ID"] = new SelectList(_context.PhimModel, "ID", "ID", xuatChieuModel.Phim_ID);
+            ViewData["PhongChieu_ID"] = new SelectList(_context.PhongChieuModel, "ID", "ID", xuatChieuModel.PhongChieu_ID);
             return View(xuatChieuModel);
         }
 
@@ -139,6 +144,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             var xuatChieuModel = await _context.XuatChieuModel
                 .Include(x => x.idLichChieu)
                 .Include(x => x.idPhim)
+                .Include(x => x.idPhongChieu)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (xuatChieuModel == null)
             {
@@ -154,7 +160,7 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var xuatChieuModel = await _context.XuatChieuModel.FindAsync(id);
-            _context.XuatChieuModel.Remove(xuatChieuModel);
+            xuatChieuModel.Da_xoa = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

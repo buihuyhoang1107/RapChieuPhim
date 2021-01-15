@@ -10,8 +10,8 @@ using RapChieuPhim.Areas.Admin.Data;
 namespace RapChieuPhim.Migrations
 {
     [DbContext(typeof(DPContext))]
-    [Migration("20201222013254_create")]
-    partial class create
+    [Migration("20210115143207_updateVeXemPhim1")]
+    partial class updateVeXemPhim1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -203,7 +203,7 @@ namespace RapChieuPhim.Migrations
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RapPhim_ID")
+                    b.Property<int?>("RapPhim_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Ten_Phong")
@@ -247,8 +247,8 @@ namespace RapChieuPhim.Migrations
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Loai_tai_khoan")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Loai_tai_khoan")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mat_khau")
                         .HasColumnType("nvarchar(max)");
@@ -291,8 +291,8 @@ namespace RapChieuPhim.Migrations
                     b.Property<int?>("RapPhim_ID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Thoi_gian")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("XuatChieu_id")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -305,6 +305,8 @@ namespace RapChieuPhim.Migrations
                     b.HasIndex("PhongChieu_ID");
 
                     b.HasIndex("RapPhim_ID");
+
+                    b.HasIndex("XuatChieu_id");
 
                     b.ToTable("VeXemPhimModel");
                 });
@@ -319,10 +321,13 @@ namespace RapChieuPhim.Migrations
                     b.Property<bool>("Da_xoa")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LichChieu_ID")
+                    b.Property<int?>("LichChieu_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Phim_ID")
+                    b.Property<int?>("Phim_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PhongChieu_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Thoi_gian")
@@ -333,6 +338,8 @@ namespace RapChieuPhim.Migrations
                     b.HasIndex("LichChieu_ID");
 
                     b.HasIndex("Phim_ID");
+
+                    b.HasIndex("PhongChieu_ID");
 
                     b.ToTable("XuatChieuModel");
                 });
@@ -383,9 +390,7 @@ namespace RapChieuPhim.Migrations
                 {
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.RapPhimModel", "idRapPhim")
                         .WithMany("lstPhongChieu")
-                        .HasForeignKey("RapPhim_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RapPhim_ID");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.TaiKhoanModel", b =>
@@ -418,21 +423,25 @@ namespace RapChieuPhim.Migrations
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.RapPhimModel", "idRapPhim")
                         .WithMany("lstVeXemPhim")
                         .HasForeignKey("RapPhim_ID");
+
+                    b.HasOne("RapChieuPhim.Areas.Admin.Models.XuatChieuModel", "idXuatChieu")
+                        .WithMany("lstVeXemPhim")
+                        .HasForeignKey("XuatChieu_id");
                 });
 
             modelBuilder.Entity("RapChieuPhim.Areas.Admin.Models.XuatChieuModel", b =>
                 {
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.LichChieuModel", "idLichChieu")
                         .WithMany("lstXuatChieu")
-                        .HasForeignKey("LichChieu_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LichChieu_ID");
 
                     b.HasOne("RapChieuPhim.Areas.Admin.Models.PhimModel", "idPhim")
                         .WithMany("lstXuatChieu")
-                        .HasForeignKey("Phim_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Phim_ID");
+
+                    b.HasOne("RapChieuPhim.Areas.Admin.Models.PhongChieuModel", "idPhongChieu")
+                        .WithMany("lstXuatChieu")
+                        .HasForeignKey("PhongChieu_ID");
                 });
 #pragma warning restore 612, 618
         }

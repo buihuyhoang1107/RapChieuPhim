@@ -24,11 +24,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="LichChieu_ID" class="control-label"></label>
-                <select asp-for="LichChieu_ID" class ="form-control" asp-items="ViewBag.LichChieu_ID"></select>
+                <select asp-for="LichChieu_ID" class="form-control" asp-items="ViewBag.LichChieu_ID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Phim_ID" class="control-label"></label>
-                <select asp-for="Phim_ID" class ="form-control" asp-items="ViewBag.Phim_ID"></select>
+                <select asp-for="Phim_ID" class="form-control" asp-items="ViewBag.Phim_ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhongChieu_ID" class="control-label"></label>
+                <select asp-for="PhongChieu_ID" class="form-control" asp-items="ViewBag.PhongChieu_ID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -41,6 +45,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

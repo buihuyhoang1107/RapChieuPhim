@@ -14,12 +14,17 @@ namespace RapChieuPhim.Areas.Admin.Models
         [DataType(DataType.Time)]
         public string Thoi_gian { get; set; }
         public bool Da_xoa { get; set; }
-        public int LichChieu_ID { get; set; }
-        public int Phim_ID { get; set; }
+        public int? LichChieu_ID { get; set; }
+        public int? Phim_ID { get; set; }
+        public int? PhongChieu_ID { get; set; }
 
         [ForeignKey("Phim_ID")]
         public virtual PhimModel idPhim { get; set; }
         [ForeignKey("LichChieu_ID")]
         public virtual LichChieuModel idLichChieu { get; set; }
+        [ForeignKey("PhongChieu_ID")]
+        public virtual PhongChieuModel idPhongChieu { get; set; }
+
+        public ICollection<VeXemPhimModel> lstVeXemPhim { get; set; }
     }
 }
