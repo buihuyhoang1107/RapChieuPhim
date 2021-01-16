@@ -142,7 +142,9 @@ namespace RapChieuPhim.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("HoTen")
                         .HasColumnType("nvarchar(max)");
@@ -151,7 +153,9 @@ namespace RapChieuPhim.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Sdt")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
 
                     b.HasKey("ID");
 

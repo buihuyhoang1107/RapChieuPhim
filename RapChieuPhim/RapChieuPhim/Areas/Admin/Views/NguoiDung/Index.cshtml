@@ -9,12 +9,28 @@
 <h1>Người dùng</h1>
 <br />
 
-<button type="button" class="btn btn-primary" data-toggle="ajax-modal-nd" data-target="#addTaiKhoan"
-        data-url="@Url.Action("Create")">
-    Thêm Người dùng
-</button>
-<br />
-<br />
+
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="ajax-modal-nd" data-target="#addTaiKhoan"
+            data-url="@Url.Action("Create")">
+        Thêm Người dùng
+    </button>
+    <br />
+    <br />
+
+    @*<form method="post">
+        <div class="row">
+            <div class="col-4">
+                <input type="text" class="form-control " name="ten" />
+
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+
+            </div>
+        </div>
+    </form>*@
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -39,8 +55,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Da_xoa)
             </th>
+            <th>
+                <a type="button" class="DeleteALL" style="color:#007bff;">Xóa Tất cả</a>
+            </th>
         </tr>
     </thead>
+
     <tbody>
         @foreach (var item in Model)
         {
@@ -66,14 +86,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Da_xoa)
                 </td>
+
                 <td>
                     @*<button type="button" class="btn btn-primary" data-toggle="ajax-modal-nd" data-target="#addTaiKhoan"
-                            data-url="@Url.Action($"Create/{item.ID}")">
-                        Chỉnh sửa
-                    </button>*@
+                                data-url="@Url.Action($"Create/{item.ID}")">
+                            Chỉnh sửa
+                        </button>*@
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    <a type="button" class="Delete" style="color:#007bff;" name="@item.ID">Delete</a> |
+                    <a type="button" class="Restore" style="color:#007bff;" name="@item.ID">Restore</a><br />
                 </td>
             </tr>
         }
@@ -83,5 +105,71 @@
 @section scripts{
 
     <script src="~/js/site.js"></script>
+    <script>
+        $(".Restore").click((e) => {
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                //chay đc rồi nha
+                url: `./NguoiDung/Restore/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[7]
+                        .children[0]
+                        .checked = true;
+                }
+            });
+        });
+        $(".Delete").click((e) => {
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                //chay đc rồi nha
+                url: `./NguoiDung/Delete/${id}`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[6]
+                        .children[0]
+                        .checked = true;
+                }
+            });
+        });
+        $(".DeleteALL").click((e) => {
+            //console.log($(e.currentTarget));
+            const id = parseInt($(e.currentTarget)[0].name);
+            $.ajax({
+                type: 'POST',
+                //chay đc rồi nha
+                url: `./NguoiDung/DeleteALL`,
+                dataType: 'json',
+                data: null,
+                success: function (data) {
+                    if (!data)
+                        return;
+                    $(e.currentTarget)[0]
+                        .parentElement
+                        .parentElement
+                        .cells[6]
+                        .children[0]
+                        .checked = true;
+                }
+            });
+        });
+
+    </script>
 }
 

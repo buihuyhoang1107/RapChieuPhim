@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model RapChieuPhim.Areas.Admin.Models.NguoiDungModel
+@await Html.PartialAsync("../Shared/_TaiKhoanHeadPartial.cshtml")
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('../Login/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+            <form method="post" class="login100-form validate-form flex-sb flex-w">
+                <span class="login100-form-title p-b-53">
+                    Thông tin người dùng
+                </span>
+
+
+                <div class="p-t-31 p-b-9">
+                    <span class="txt1">
+                        Họ tên
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                    <input class="input100" type="text" name="HoTen" asp-for="HoTen">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Email
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="email" name="Email" asp-for="Email">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Địa chỉ
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="text" name="Dia_chi" asp-for="Dia_chi">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Ngày sinh
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="datetime-local" name="Dia_chi" asp-for="Ngay_sinh">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Số điện thoại
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="number" name="Sdt" asp-for="Sdt">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" asp-action="Create">
+                        Thêm
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+@await Html.PartialAsync("../Shared/_TaiKhoanFoodPartial.cshtml")

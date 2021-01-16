@@ -3,18 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+
 <div id="PlaceHolderHere"></div>
 <h1>Tài khoản</h1>
 <br />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    <div class="row">
+        <div class="col-3">
+            <p>Nhập tên bạn muốn tìm kiếm: </p>
+        </div>
+        <div class="col-5">
+            <form method="post">
+                <div class="row">
+                    <div class="col-9">
+                        <input type="text" class="form-control " name="ten" />
+                    </div>
+                    <div class="col-3">
+                        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
 
-<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addTaiKhoan"
-        data-url="@Url.Action("Create")">
-    Thêm tài khoản
-</button>
-<br />
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -33,34 +50,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.NguoiDungModel)
             </th>
-            @*<th>
-                    <a onclick="showModalAcount('@Url.Action("Create","TaiKhoan",null,Context.Request.Scheme)','Thêm tài khoản')" class="btn btn-success text-white">
-                        Thêm tài khoản
-                    </a>
-                </th>*@
             <th>
 
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.dstk)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Ten_dang_nhap)
+                    @item.Ten_dang_nhap
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Mat_khau)
+                    @item.Mat_khau
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Loai_tai_khoan)
+                    @item.Loai_tai_khoan
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Da_xoa)
+                    @item.Da_xoa
+                    @*<input type="checkbox" style="width:20px;" value=" 1" name="checkbox" class="checkbox_check">*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NguoiDungModel.ID)
+                    @item.NguoiDung_ID
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

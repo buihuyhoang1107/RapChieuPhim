@@ -8919,11 +8919,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Desktop\\doan_asp\\Liem - Copy\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "projectUniqueName": "d:\\Desktop\\RapChieuPhim_V_open\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
       "projectName": "RapChieuPhim",
-      "projectPath": "d:\\Desktop\\doan_asp\\Liem - Copy\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+      "projectPath": "d:\\Desktop\\RapChieuPhim_V_open\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
       "packagesPath": "C:\\Users\\KucKung\\.nuget\\packages\\",
-      "outputPath": "d:\\Desktop\\doan_asp\\Liem - Copy\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
+      "outputPath": "d:\\Desktop\\RapChieuPhim_V_open\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\KucKung\\AppData\\Roaming\\NuGet\\NuGet.Config",

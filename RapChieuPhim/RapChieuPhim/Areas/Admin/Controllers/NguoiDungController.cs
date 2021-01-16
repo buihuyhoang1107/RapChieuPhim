@@ -23,6 +23,15 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         // GET: Admin/NguoiDung
         public async Task<IActionResult> Index()
         {
+            //var dstk = from nguoidung in _context.NguoiDungModel
+            //           select nguoidung;
+            //if (!String.IsNullOrWhiteSpace(ten))
+            //{
+            //    dstk = dstk.Where(s => s.HoTen.Contains(ten));
+            //}
+            //ViewBag.dstk = dstk;
+            //return View();
+          
             return View(await _context.NguoiDungModel.ToListAsync());
         }
 
@@ -122,33 +131,79 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDung/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public async Task<bool> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return false;
             }
 
             var nguoiDungModel = await _context.NguoiDungModel
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (nguoiDungModel == null)
             {
-                return NotFound();
+                return false;
+            }
+            nguoiDungModel = await _context.NguoiDungModel.FindAsync(id);
+
+            nguoiDungModel.Da_xoa = true;
+            _context.NguoiDungModel.Update(nguoiDungModel);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        // GET: Admin/NguoiDung/DeleteALL/5
+
+        [HttpPost]
+        public async Task<bool> DeleteALL()
+        {
+            //var nguoiDungModel = from nguoidung in _context.NguoiDungModel
+            //           select nguoidung;
+            //if (nguoiDungModel == null)
+            //{
+            //    return false;
+            //}
+       
+
+            //nguoiDungModel. = true;
+            //_context.NguoiDungModel.Update(nguoiDungModel);
+            //await _context.SaveChangesAsync();
+            return true;
+        }
+        // GET: Admin/NguoiDung/Restore/5
+        [HttpPost]
+        public async Task<bool> Restore(int? id)
+        {
+
+            if (id == null)
+            {
+                return false;
             }
 
-            return View(nguoiDungModel);
+            var nguoiDungModel = await _context.NguoiDungModel
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (nguoiDungModel == null)
+            {
+                return false;
+            }
+            nguoiDungModel = await _context.NguoiDungModel.FindAsync(id);
+
+            nguoiDungModel.Da_xoa = false;
+            _context.NguoiDungModel.Update(nguoiDungModel);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        // POST: Admin/NguoiDung/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var nguoiDungModel = await _context.NguoiDungModel.FindAsync(id);
-            _context.NguoiDungModel.Remove(nguoiDungModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: Admin/NguoiDung/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var nguoiDungModel = await _context.NguoiDungModel.FindAsync(id);
+        //    _context.NguoiDungModel.Remove(nguoiDungModel);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool NguoiDungModelExists(int id)
         {

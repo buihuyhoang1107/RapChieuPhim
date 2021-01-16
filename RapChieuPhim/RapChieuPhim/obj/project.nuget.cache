@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fgBSwon9SGR5PRGKjv/p3OFW09pM5fLxd28BvCl2O6D1qHlw82SJAK4XW5IzXFJFG55fzXkbMxRpwNIhnOyevA==",
+  "dgSpecHash": "e6IH/UFmOlaoX2Fz02m46U1tXzbRcbHXgKqNE7VQmTxCYKOht7h1exQRXOHlbikZvWeLXbZhJljkv7VMgJCnxg==",
   "success": true,
-  "projectFilePath": "d:\\Desktop\\doan_asp\\Liem - Copy\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
+  "projectFilePath": "d:\\Desktop\\RapChieuPhim_V_open\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim\\RapChieuPhim.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KucKung\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\KucKung\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.11\\microsoft.aspnetcore.jsonpatch.3.1.11.nupkg.sha512",
